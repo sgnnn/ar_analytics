@@ -33,7 +33,7 @@
 			<div class="recers"></div>
 
 			<div class="analytics">
-				<a id="analytics_start" href="./AnalyticsHomes">分析開始</a>
+				<a id="analytics_start" href="./Analytics/analytics">分析開始</a>
 			</div>
 		</div>
 	</div>
