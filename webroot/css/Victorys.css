@@ -1,0 +1,62 @@
+.top_note{
+	margin-top:10px;
+	font-size:18pt;
+}
+
+.victory_datas{
+	margin-top: 20px;
+}
+
+.victory_data{
+	margin-top: 10px;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.victory_data div{
+	margin: 3px 0px;
+}
+
+.victory_data p{
+	display: inline-block;
+}
+
+.victory_top p:nth-child(1){
+	font-size: 20px;
+}
+
+.victory_top p:nth-child(2){
+
+}
+
+.victory_top p:nth-child(3){
+
+}
+
+.victory_top p:nth-child(4){
+
+}
+
+.victory_top p:nth-child(5){
+
+}
+
+.victory_top p:nth-child(6){
+
+}
+
+.victory_top p:nth-child(7){
+
+}
+
+.victory_top p:nth-child(8){
+
+}
+
+.victory_top p:nth-child(9){
+
+}
+
+.victory_top p:nth-child(10){
+
+}

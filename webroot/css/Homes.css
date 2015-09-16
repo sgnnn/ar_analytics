@@ -1,0 +1,54 @@
+div.description_autorace_title{
+	margin-top:20px;
+	font-weight:bold;
+}
+
+.description_autorace_main{
+	font-size:200%;
+}
+
+.description_autorace_sub{
+	font-size:170%;
+}
+
+div.description_body{
+	margin-top:10px;
+	font-size:150%;
+	color:#696969;
+}
+
+div.area_1{
+	margin-top:40px;
+	font-size:150%;
+}
+
+div.area_2{
+	margin-top:10px;
+	font-size:140%;
+	color:#696969;
+}
+
+#image-bloc {
+	height: 440px;
+}
+
+.bx-viewport {
+	overflow: visible!important;
+	width: 1020px!important;
+}
+
+.main-container {
+	overflow: hidden;
+}
+
+.slider {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slider li {
+	width: 700px!important;
+	margin: 0;
+	padding: 0;
+}

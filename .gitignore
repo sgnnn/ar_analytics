@@ -1,0 +1,6 @@
+tmp/cache/
+tmp/cache/models/
+tmp/cache/persistent/ 
+tmp/logs/
+.settings/
+.project
