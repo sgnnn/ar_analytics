@@ -1,3 +1,4 @@
+<input type="hidden" id="selectAction" value="<?php echo $action; ?>">
 <table class="analytics_select">
 	<tr>
 		<td rowspan=3><p id="analytics" class="full">分析</p></td>
