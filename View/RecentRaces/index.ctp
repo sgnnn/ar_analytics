@@ -35,3 +35,10 @@
 	</div>
 <?php endforeach; ?>
 </div>
+
+<div id="more">
+	もっと見る
+</div>
+
+<input type="hidden" id="gradeOnly" value="<?php echo $gradeOnly; ?>" >
+<input type="hidden" id="moreStart" value="" >

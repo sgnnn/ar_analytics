@@ -44,6 +44,19 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#more").click(function() {
+		var gradeOnly = $("#gradeOnly").val();
+		var moreStart = $("#moreStart").val();
+		execGet("RecentRaces/findRacesMore", {gradeOnly: gradeOnly, moreStart: moreStart},
+			{success : function(response){
+				if(response.status) {
+
+	        	}
+			}
+		});
+	});
+
+
 	$('.race_analytics a').colorbox({
 		inline:true,
 		maxWidth:"90%",

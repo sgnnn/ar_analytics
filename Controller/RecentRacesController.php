@@ -15,10 +15,10 @@ class RecentRacesController extends AppController {
 		else
 			$gradeOnly = false;
 
-		$RSerieses = $this->RSeries->findRecentSeries($gradeOnly);
+		$RSerieses = $this->RSeries->findRecentSeries("", $gradeOnly);
 
 		$this->set("RSerieses", $RSerieses);
-
+		$this->set("gradeOnly", $gradeOnly);
 		$this->set("display",$this->display);
 	}
 
@@ -43,6 +43,33 @@ class RecentRacesController extends AppController {
 
             return json_encode(compact('status', 'RRaces', 'error'));
         }
+    }
+
+    public function findRacesMore() {
+    	$this->autoRender = FALSE;
+    	if($this->request->is('ajax')){
+    		if(isset($this->params['url']["gradeOnly"]))
+    			$gradeOnly = $this->params['url']["gradeOnly"];
+    		else
+    			$gradeOnly = false;
+
+    		if(isset($this->params['url']["moreStart"]))
+    			$moreStart = $this->params['url']["moreStart"];
+    		else
+    			$moreStart = "";
+
+    		$RSerieses = $this->RSeries->findRecentSeries($moreStart, $gradeOnly);
+
+    		$status = !empty($RSerieses);
+    		if(!$status) {
+    			$error = array(
+    					'message' => 'データがありません（R_SERIES）',
+    					'code' => 404
+    			);
+    		}
+
+    		return json_encode(compact('status', 'RSerieses', 'error'));
+    	}
     }
 
 }
