@@ -14,8 +14,13 @@ class RSeries extends AppModel {
 			return array();
     }
 
-	public function findRecentSeries(){
-        $sql = "select * from R_SERIES where SE_START_YMD >= date_format(NOW() - INTERVAL 2 MONTH, '%Y%m%d') order by SE_START_YMD desc";
+	public function findRecentSeries($gradeOnly){
+		$whereGrade = "";
+
+		if($gradeOnly)
+			$whereGrade = " and SE_RANK_CD in ('2', '3', '4') ";
+
+        $sql = "select * from R_SERIES where SE_START_YMD >= date_format(NOW() - INTERVAL 2 MONTH, '%Y%m%d')" . $whereGrade . " order by SE_START_YMD desc limit 20";
         $result = $this->query($sql);
 
 		if(count($result) > 0)
@@ -25,12 +30,12 @@ class RSeries extends AppModel {
     }
 
 
-    public function findRangeSeries($fromSeStartYmd, $grade){
+    public function findRangeSeries($fromSeStartYmd, $gradeOnly){
 
     	$toSeStartYmd = "";
     	$whereGrade = "";
 
-    	if($grade)
+    	if($gradeOnly)
 			$whereGrade = " and SE_RANK_CD in ('2', '3', '4') ";
 
     	if(empty($fromSeStartYmd)){
@@ -51,7 +56,7 @@ class RSeries extends AppModel {
 			return array();
 
 
-    	$sql = "select * from R_SERIES where SE_START_YMD between ? and ? order by SE_START_YMD desc";
+    	$sql = "select * from R_SERIES where SE_START_YMD between ? and ?" . $whereGrade . "order by SE_START_YMD desc";
     	$params = array($toSeStartYmd, $fromSeStartYmd);
     	$result = $this->query($sql, $params);
 

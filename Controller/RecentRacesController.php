@@ -10,7 +10,12 @@ class RecentRacesController extends AppController {
 		$this->layout = "Normal";
 		$this->display = "RecentRaces";
 
-		$RSerieses = $this->RSeries->findRecentSeries();
+		if(isset($this->params['url']["gradeOnly"]))
+			$gradeOnly = $this->params['url']["gradeOnly"];
+		else
+			$gradeOnly = false;
+
+		$RSerieses = $this->RSeries->findRecentSeries($gradeOnly);
 
 		$this->set("RSerieses", $RSerieses);
 

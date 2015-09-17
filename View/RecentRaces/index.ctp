@@ -7,6 +7,11 @@
 	過去2ヶ月間に開催されたレースの結果が確認できます。
 </div>
 
+<div>
+	<a href="./RecentRaces">すべて</a>
+	<a href="./RecentRaces?gradeOnly=true">Gレースのみ</a>
+</div>
+
 <div class="race_analytics">
 	<a id="analytics1" href="#inline-analytics">車番勝率</a>
 	<a id="analytics2" href="#inline-analytics">オープン戦</a>

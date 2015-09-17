@@ -3,8 +3,8 @@
 </div>
 
 <div class="category_select">
-	<a href="#">全て</a>
-	<a href="#">Gレースのみ</a>
+	<a href="./Victorys">すべて</a>
+	<a href="./Victorys?gradeOnly=true">Gレースのみ</a>
 </div>
 
 <div class="victory_datas">

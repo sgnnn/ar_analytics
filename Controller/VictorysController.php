@@ -11,18 +11,23 @@ class VictorysController extends AppController {
 		$this->layout = "Normal";
 		$this->display = "Victorys";
 
-		$victorys = $this->findVictorys("", false);
+		if(isset($this->params['url']["gradeOnly"]))
+			$gradeOnly = $this->params['url']["gradeOnly"];
+		else
+			$gradeOnly = false;
+
+		$victorys = $this->findVictorys("", $gradeOnly);
 
 		$this->set("victorys", $victorys);
 		$this->set("display", $this->display);
 	}
 
-	function findVictorys($seCd, $grade){
+	function findVictorys($seCd, $gradeOnly){
 		$codeConvert = new CodeConvert();
 
 		$victorys = array();
 
-		$RSerieses = $this->RSeries->findRangeSeries($seCd, $grade);
+		$RSerieses = $this->RSeries->findRangeSeries($seCd, $gradeOnly);
 
 		foreach($RSerieses as $RSerieRow){
 			$RSeries = $RSerieRow["R_SERIES"];
