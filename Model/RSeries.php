@@ -25,16 +25,14 @@ class RSeries extends AppModel {
 			$sql = "select min(SE_START_YMD) as TO_SE_START_YMD, max(SE_START_YMD) as FROM_SE_START_YMD from (select SE_START_YMD  from R_SERIES where END_DAYS > 0" . $whereGrade . " order by SE_START_YMD desc limit 20) T";
 			$result = $this->query($sql);
 		} else{
-			$sql = "select min(SE_START_YMD) as TO_SE_START_YMD from (select SE_START_YMD  from R_SERIES where END_DAYS > 0 and SE_START_YMD < ?" . $whereGrade . "order by SE_START_YMD desc limit 20) T";
+			$sql = "select min(SE_START_YMD) as TO_SE_START_YMD, max(SE_START_YMD) as FROM_SE_START_YMD from (select SE_START_YMD  from R_SERIES where END_DAYS > 0 and SE_START_YMD < ?" . $whereGrade . "order by SE_START_YMD desc limit 20) T";
 			$params = array($fromSeStartYmd);
 			$result = $this->query($sql, $params);
 		}
 
 		if(count($result) > 0){
 			$toSeStartYmd =$result[0][0]["TO_SE_START_YMD"];
-
-			if(empty($fromSeStartYmd))
-				$fromSeStartYmd =$result[0][0]["FROM_SE_START_YMD"];
+			$fromSeStartYmd =$result[0][0]["FROM_SE_START_YMD"];
 		} else
 			return array();
 

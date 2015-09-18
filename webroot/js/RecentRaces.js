@@ -50,7 +50,21 @@ $(document).ready(function(){
 		execGet("RecentRaces/findRacesMore", {gradeOnly: gradeOnly, moreStart: moreStart},
 			{success : function(response){
 				if(response.status) {
+					var RSerieses = response.RSerieses;
+					for(var i=0; i<RSerieses.length; i++){
+						var RSeries = RSerieses[i]["R_SERIES"];
+						var raceArea = $('<div/>').addClass("race_area");
+						var raceSelect = $('<div/>').attr("id", RSeries['SE_CD']).addClass("race_select").addClass("race_select_" + RSeries['LG_CD']);
+						raceSelect.append($('<div/>').text(convertLgName(RSeries["LG_CD"])));
+						raceSelect.append($('<div/>').text(convertSeRankName(RSeries["SE_RANK_CD"])));
+						raceSelect.append($('<div/>').text(RSeries["SE_TITLE"]));
+						raceSelect.append($('<div/>').text(period(RSeries["SE_START_YMD"], RSeries["SE_DAYS"])));
+						raceArea.append(raceSelect);
+						$(".race_selects").append(raceArea);
+					}
 
+					if(RSerieses.length > 0)
+						$("#moreStart").val(RSerieses[RSerieses.length-1]["R_SERIES"]["SE_START_YMD"]);
 	        	}
 			}
 		});
@@ -191,3 +205,7 @@ $(document).on({
 	"mouseenter": function(){$(this).stop().animate({ opacity: "0.5" }, 200);},
 	"mouseleave": function(){$(this).stop().animate({ opacity: "1.0" }, 500);}
 }, ".race_recode");
+
+function period(seStartYmd, seDays){
+	return  addDayMD(seStartYmd, 0) + " 〜 " + addDayMD(seStartYmd, seDays) + "（" + seDays + "日間）";
+}

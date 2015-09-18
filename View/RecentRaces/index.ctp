@@ -41,4 +41,4 @@
 </div>
 
 <input type="hidden" id="gradeOnly" value="<?php echo $gradeOnly; ?>" >
-<input type="hidden" id="moreStart" value="" >
+<input type="hidden" id="moreStart" value="<?php echo $moreStart; ?>" >

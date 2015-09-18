@@ -17,8 +17,13 @@ class RecentRacesController extends AppController {
 
 		$RSerieses = $this->RSeries->findRecentSeries("", $gradeOnly);
 
+		$moreStart = "";
+		if(count($RSerieses) > 0)
+			$moreStart = $RSerieses[count($RSerieses)-1]["R_SERIES"]["SE_START_YMD"];
+
 		$this->set("RSerieses", $RSerieses);
 		$this->set("gradeOnly", $gradeOnly);
+		$this->set("moreStart", $moreStart);
 		$this->set("display",$this->display);
 	}
 
