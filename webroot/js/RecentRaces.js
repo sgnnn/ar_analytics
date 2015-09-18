@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
-	var hovers = 	"  .race_select" +
-				 	", .race_analytics a";
+	var hovers = 	".race_analytics a";
 
 	$(hovers).hover(function() {
 		$(this).stop().animate({ opacity: "0.5" }, 200);
@@ -196,6 +195,11 @@ $(document).on('click', '.race_recode',function(){
 
 
 });
+
+$(document).on({
+	"mouseenter": function(){$(this).stop().animate({ opacity: "0.5" }, 200);},
+	"mouseleave": function(){$(this).stop().animate({ opacity: "1.0" }, 500);}
+}, ".race_select");
 
 $(document).on({
 	"mouseenter": function(){$(this).stop().animate({ opacity: "0.5" }, 200);},
