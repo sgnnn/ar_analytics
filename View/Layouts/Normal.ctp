@@ -73,12 +73,25 @@
 
 		<div class="collapse navbar-collapse target">
 			<ul class="nav navbar-nav navbar-left">
-				<li <?php if((isset($display) and $display === "Homes") or !isset($display)){echo 'class="active"';} ?>><a href="./Homes">ホーム</a></li>
-				<li <?php if(isset($display) and ($display === "Todays" or $display === "Analytics")){echo 'class="active"';} ?>><a href="./Todays">本日の開催</a></li>
-				<li <?php if(isset($display) and $display === "RecentRaces"){echo 'class="active"';} ?>><a href="./RecentRaces">直近レース</a></li>
-				<li <?php if(isset($display) and $display === "Rankings"){echo 'class="active"';} ?>><a href="./Rankings">ランキング</a></li>
-				<li <?php if(isset($display) and $display === "Victorys"){echo 'class="active"';} ?>><a href="./Victorys">過去優勝者</a></li>
-				<li <?php if(isset($display) and $display === "LotomotoMinis"){echo 'class="active"';} ?>><a href="./LotomotoMinis">モトロトmini</a></li>
+				<?php $action = isset($action) ? "../" : ""; ?>
+
+				<?php $classActive = (isset($display) and $display === "Homes" or !isset($display)) ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Homes">ホーム</a></li>
+
+				<?php $classActive = (isset($display) and ($display === "Todays" or $display === "Analytics")) ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Todays">本日の開催</a></li>
+
+				<?php $classActive = (isset($display) and $display === "RecentRaces") ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>RecentRaces">直近レース</a></li>
+
+				<?php $classActive = (isset($display) and $display === "Rankings") ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Rankings">ランキング</a></li>
+
+				<?php $classActive = (isset($display) and $display === "Victorys") ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Victorys">過去優勝者</a></li>
+
+				<?php $classActive = (isset($display) and $display === "LotomotoMinis") ? 'class="active"' : ""; ?>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>LotomotoMinis">モトロトmini</a></li>
 			</ul>
 		</div>
 	</nav>
