@@ -33,8 +33,12 @@
 			<div class="recers"></div>
 
 			<div class="analytics">
-				<a id="analytics_start" href="./Analytics/analytics">分析開始</a>
+				<a id="analytics_start" href="#">分析開始</a>
 			</div>
 		</div>
 	</div>
 </div>
+
+<input type="hidden" id="seCd" value="">
+<input type="hidden" id="seDay" value="">
+<input type="hidden" id="rcNum" value="">

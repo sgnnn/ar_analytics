@@ -1,4 +1,7 @@
 <input type="hidden" id="selectAction" value="<?php echo $action; ?>">
+<input type="hidden" id="seCd" value="<?php echo $seCd; ?>">
+<input type="hidden" id="seDay" value="<?php echo $seDay; ?>">
+<input type="hidden" id="rcNum" value="<?php echo $rcNum; ?>">
 <table class="analytics_select">
 	<tr>
 		<td rowspan=3><p id="analytics" class="full">分析</p></td>

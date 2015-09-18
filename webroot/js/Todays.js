@@ -62,7 +62,13 @@ $(document).ready(function(){
 	        	}
 			}
 		});
+	});
 
+	$("#analytics_start").click(function() {
+		var seCd = $("#seCd").val();
+		var seDay = $("#seDay").val();
+		var rcNum = $("#rcNum").val();
+		window.location.href = "./Analytics/analytics?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + rcNum;
 	});
 
 });
@@ -117,6 +123,10 @@ $(document).on('click', '.race_numbers p',function(){
 	    	}
 		}
 	});
+
+	$("#seCd").val(seCd);
+	$("#seDay").val(seDay);
+	$("#rcNum").val(rcNum);
 });
 
 $(document).on({

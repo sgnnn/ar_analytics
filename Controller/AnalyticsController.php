@@ -92,6 +92,10 @@ class AnalyticsController extends AppController {
 
 		if(empty($this->seCd) or empty($this->seDay) or empty($this->rcNum))
 			$this->exec = false;
+
+		$this->set("seCd",  $this->seCd);
+		$this->set("seDay",  $this->seDay);
+		$this->set("rcNum",  $this->rcNum);
 	}
 
 }
