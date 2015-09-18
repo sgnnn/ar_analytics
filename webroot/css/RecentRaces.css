@@ -253,3 +253,18 @@
 	background-image: linear-gradient(to bottom, #a9a588, #8e865b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a9a588, endColorstr=#8e865b);
 }
 
+#more{
+	color: #666;
+	padding: 10px 0px;
+	margin-top: 20px;
+	cursor:pointer;
+	font-weight:bold;
+	width: 100%;
+	background-color: #cef8ff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#cef8ff), to(#7fe0f8));
+	background-image: -webkit-linear-gradient(top, #cef8ff, #7fe0f8);
+	background-image: -moz-linear-gradient(top, #cef8ff, #7fe0f8);
+	background-image: -ms-linear-gradient(top, #cef8ff, #7fe0f8);
+	background-image: -o-linear-gradient(top, #cef8ff, #7fe0f8);
+	background-image: linear-gradient(to bottom, #cef8ff, #7fe0f8);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#cef8ff, endColorstr=#7fe0f8);
+}

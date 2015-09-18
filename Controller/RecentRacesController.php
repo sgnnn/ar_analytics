@@ -65,13 +65,7 @@ class RecentRacesController extends AppController {
 
     		$RSerieses = $this->RSeries->findRecentSeries($moreStart, $gradeOnly);
 
-    		$status = !empty($RSerieses);
-    		if(!$status) {
-    			$error = array(
-    					'message' => 'データがありません（R_SERIES）',
-    					'code' => 404
-    			);
-    		}
+    		$status = true;
 
     		return json_encode(compact('status', 'RSerieses', 'error'));
     	}

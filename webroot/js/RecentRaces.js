@@ -65,6 +65,8 @@ $(document).ready(function(){
 
 					if(RSerieses.length > 0)
 						$("#moreStart").val(RSerieses[RSerieses.length-1]["R_SERIES"]["SE_START_YMD"]);
+					else
+						$("#more").text("ここで終わりです");
 	        	}
 			}
 		});
