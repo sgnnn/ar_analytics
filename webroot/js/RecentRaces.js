@@ -9,41 +9,6 @@ $(document).ready(function(){
 		$(this).stop().animate({ opacity: "1.0" }, 1000);
 	});
 
-	$(".race_select").click(function() {
-		var race_area = $(this).parent(".race_area");
-		var day_selects = race_area.children(".day_selects");
-		var select_days_please = race_area.children(".select_days_please");
-		var race_datas = race_area.children(".race_datas");
-
-		var seCd = $(this).attr("id");
-
-		if(day_selects.css('display') == 'none'){
-			$(day_selects.children("a")).remove();
-
-			execGet("Todays/selectSeries", {seCd: seCd},
-				{success : function(response){
-					if(response.status) {
-						var RSeries = response.RSeries;
-		        		for(i = 1; i <= RSeries["END_DAYS"]; i++){
-		        			if(RSeries["END_DAYS"] == 0)
-		        				continue;
-
-		    				var date = addDay(RSeries["SE_START_YMD"], i-1);
-		    				day_selects.append($('<a/>').attr("id", RSeries["SE_CD"] + i).text(date));
-
-		    				$(select_days_please).slideDown("slow");
-		    				$(day_selects).slideDown("slow");
-		    			}
-		        	}
-				}
-			});
-		} else{
-			$(race_datas).hide("slow");
-			$(select_days_please).hide("slow");
-			$(day_selects).hide("slow");
-		}
-	});
-
 	$("#more").click(function() {
 		var gradeOnly = $("#gradeOnly").val();
 		var moreStart = $("#moreStart").val();
@@ -59,7 +24,12 @@ $(document).ready(function(){
 						raceSelect.append($('<div/>').text(convertSeRankName(RSeries["SE_RANK_CD"])));
 						raceSelect.append($('<div/>').text(RSeries["SE_TITLE"]));
 						raceSelect.append($('<div/>').text(period(RSeries["SE_START_YMD"], RSeries["SE_DAYS"])));
+
 						raceArea.append(raceSelect);
+						raceArea.append($('<div/>').addClass("day_selects"));
+						raceArea.append($('<div/>').addClass("select_days_please").text("日付を選択してください"));
+						raceArea.append($('<div/>').addClass("race_datas"));
+
 						$(".race_selects").append(raceArea);
 					}
 
@@ -71,7 +41,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-
 
 	$('.race_analytics a').colorbox({
 		inline:true,
@@ -91,6 +60,41 @@ $(document).ready(function(){
 	$("#analytics3").click(function() {
 		createChartAnalytics3();
 	});
+});
+
+$(document).on('click', '.race_select',function(){
+	var race_area = $(this).parent(".race_area");
+	var day_selects = race_area.children(".day_selects");
+	var select_days_please = race_area.children(".select_days_please");
+	var race_datas = race_area.children(".race_datas");
+
+	var seCd = $(this).attr("id");
+
+	if(day_selects.css('display') == 'none'){
+		$(day_selects.children("a")).remove();
+
+		execGet("Todays/selectSeries", {seCd: seCd},
+			{success : function(response){
+				if(response.status) {
+					var RSeries = response.RSeries;
+	        		for(i = 1; i <= RSeries["END_DAYS"]; i++){
+	        			if(RSeries["END_DAYS"] == 0)
+	        				continue;
+
+	    				var date = addDay(RSeries["SE_START_YMD"], i-1);
+	    				day_selects.append($('<a/>').attr("id", RSeries["SE_CD"] + i).text(date));
+
+	    				$(select_days_please).slideDown("slow");
+	    				$(day_selects).slideDown("slow");
+	    			}
+	        	}
+			}
+		});
+	} else{
+		$(race_datas).hide("slow");
+		$(select_days_please).hide("slow");
+		$(day_selects).hide("slow");
+	}
 });
 
 $(document).on('click', '.day_selects a',function(){

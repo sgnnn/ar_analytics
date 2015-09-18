@@ -30,7 +30,7 @@
 			<div><?php echo $recentRaces->period($RSeries["SE_START_YMD"], $RSeries["SE_DAYS"]); ?></div>
 		</div>
 		<div class="day_selects"></div>
-		<div class="select_days_please">日付を選択してください。</div>
+		<div class="select_days_please">日付を選択してください</div>
 		<div class="race_datas"></div>
 	</div>
 <?php endforeach; ?>
