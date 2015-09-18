@@ -4,78 +4,94 @@ App::uses('AppController', 'Controller');
 
 class AnalyticsController extends AppController {
 
-	public $uses = array();
+	public $uses = array("RRecode");
+
+	public $seCd;
+	public $seDay;
+	public $rcNum;
+	public $exec = true;
 
 	public function analytics() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "analytics";
+		$this->execShare("analytics");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
+		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
+
 	}
 
 	public function information() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "information";
+		$this->execShare("information");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
+		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
+
+		$this->set("RRecodes", $RRecodes);
+
 	}
 
 	public function recent() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "recent";
+		$this->execShare("recent");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
 	}
 
 	public function current() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "current";
+		$this->execShare("current");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
 	}
 
 	public function holding() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "holding";
+		$this->execShare("holding");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
 	}
 
 	public function season() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "season";
+		$this->execShare("season");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
 	}
 
 	public function before() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "before";
+		$this->execShare("before");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
 	}
 
 	public function grade() {
-		$this->layout = "Normal";
-		$this->display = "Analytics";
-		$this->action = "grade";
+		$this->execShare("grade");
 
-		$this->set("display",$this->display);
-		$this->set("action",$this->action);
+		if(!$this->exec)
+			return;
+
+	}
+
+	function execShare($action){
+		$this->layout = "Normal";
+		$this->set("display", "Analytics");
+		$this->set("action",  $action);
+
+		$this->seCd = isset($this->params['url']["seCd"]) ? $this->params['url']["seCd"] : "";
+		$this->seDay = isset($this->params['url']["seDay"]) ? $this->params['url']["seDay"] : "";
+		$this->rcNum = isset($this->params['url']["rcNum"]) ? $this->params['url']["rcNum"] : "";
+
+		if(empty($this->seCd) or empty($this->seDay) or empty($this->rcNum))
+			$this->exec = false;
 	}
 
 }
