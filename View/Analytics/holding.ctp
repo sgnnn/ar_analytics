@@ -1,4 +1,4 @@
-<?php include('/analytics_header.php'); ?>
+<?php include('analytics_header.php'); ?>
 
 
 
