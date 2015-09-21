@@ -18,7 +18,7 @@ class CodeConvert{
 				"5" => "普通"
 			);
 
-	public $runwayK = array(
+	public $runways = array(
 				"1" => "良",
 				"2" => "風",
 				"3" => "斑",
@@ -37,9 +37,23 @@ class CodeConvert{
 		return $this->seRanks[$seRankCd];
 	}
 
-	function convertRunwayName($runwayK){
-		return $this->runwayK[$runwayK];
+	function convertRunwayName($runwayCode){
+		return $this->runways[$runwayCode];
 	}
 
+	function convertRunwayCode($runwayName){
+		switch($runwayName){
+			case "良":
+				return "1";
+			case "風":
+				return "2";
+			case "斑":
+				return "3";
+			case "湿":
+				return "4";
+			default:
+				return "1";
+		}
+	}
 }
 ?>
