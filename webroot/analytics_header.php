@@ -18,3 +18,12 @@
 		<td><p id="grade" class="divide">グレード比較</p></td>
 	</tr>
 </table>
+
+<div class="race_numbers">
+	<?php for($i=1; $i<=$rcCount; $i++){ ?>
+		<p id="<?php echo $i; ?>" <?php if($i == $rcNum) echo "class='select'"; ?>><?php echo $i . "R"; ?></p>
+		<?php if($i == 6){ ?>
+			<div></div>
+		<?php } ?>
+	<?php } ?>
+</div>

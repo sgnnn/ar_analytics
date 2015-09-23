@@ -24,7 +24,8 @@ $(document).ready(function(){
 	$("#grade").click(function() 		{window.location.href = './grade' + param;});
 
 	var hovers =	"  .full" +
-					", .divide";
+					", .divide" +
+					", .race_numbers p";
 
 	$(hovers).hover(function() {
 		$(this).stop().animate({ opacity: "0.5" }, 200);
@@ -32,6 +33,11 @@ $(document).ready(function(){
 		$(this).stop().animate({ opacity: "1.0" }, 1000);
 	});
 
-
+	$(".race_numbers p").click(function() {
+		var selectAction = $("#selectAction").val();
+		var selectRcNum = $(this).attr("id");
+		var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + selectRcNum;
+		window.location.href = './' + selectAction + param;
+	});
 
 });

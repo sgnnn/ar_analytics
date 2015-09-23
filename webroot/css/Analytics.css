@@ -52,10 +52,65 @@
 	background-image: -o-linear-gradient(top, #a9a588, #8e865b);
 }
 
+.race_numbers{
+	margin-top: 10px;
+}
+
+.race_numbers p{
+	margin: 5px 5px;
+	font-size:15pt;
+	font-weight:bold;
+	height: 50px;
+	width: 80px;
+	display: inline-block;
+
+	color: #ffffff;
+	padding:10px 0px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: solid #f5fdff 2px;
+	background: #FFBEDA;
+	cursor:pointer;
+}
+
+.race_numbers .select{
+	background:#9057FF;
+}
+
 /*********************************
  * analytics
  ********************************/
+.analytics_recodes{
 
+}
+
+.analytics_recodes p{
+	display: inline-block;
+}
+
+.analytics_recodes p:nth-child(1){
+	width: 50px;
+}
+
+.analytics_recodes p:nth-child(2){
+	width: 50px;
+}
+
+.analytics_recodes p:nth-child(3){
+	text-align: left;
+	width: 150px;
+}
+
+.analytics_recodes p:nth-child(4){
+	text-align: left;
+	width: 50px;
+}
+
+.analytics_recodes p:nth-child(5),
+.analytics_recodes p:nth-child(6){
+	width: 50px;
+}
 
 /*********************************
  * information
