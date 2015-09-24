@@ -82,13 +82,13 @@
 				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Todays">本日の開催</a></li>
 
 				<?php $classActive = (isset($display) and $display === "RecentRaces") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>RecentRaces">直近レース</a></li>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>RecentRaces">過去レース</a></li>
 
 				<?php $classActive = (isset($display) and $display === "Rankings") ? 'class="active"' : ""; ?>
 				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Rankings">ランキング</a></li>
 
 				<?php $classActive = (isset($display) and $display === "Victorys") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Victorys">過去優勝者</a></li>
+				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Victorys">優勝者</a></li>
 
 				<?php $classActive = (isset($display) and $display === "LotomotoMinis") ? 'class="active"' : ""; ?>
 				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>LotomotoMinis">モトロトmini</a></li>
