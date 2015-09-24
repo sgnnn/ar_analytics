@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var hovers = 	".race_analytics a";
+	var hovers = 	".category_select a";
 
 	$(hovers).hover(function() {
 		$(this).stop().animate({ opacity: "0.5" }, 200);
@@ -41,24 +41,6 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.race_analytics a').colorbox({
-		inline:true,
-		maxWidth:"90%",
-		maxHeight:"90%",
-		opacity: 0.7
-	});
-
-	$("#analytics1").click(function() {
-		createChartAnalytics1();
-	});
-
-	$("#analytics2").click(function() {
-		createChartAnalytics2();
-	});
-
-	$("#analytics3").click(function() {
-		createChartAnalytics3();
-	});
 });
 
 $(document).on('click', '.race_select',function(){
