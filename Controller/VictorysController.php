@@ -18,20 +18,27 @@ class VictorysController extends AppController {
 
 		$victorys = $this->findVictorys("", $gradeOnly);
 
+		$moreStart = "";
+		if(count($victorys) > 0)
+			$moreStart = $victorys[count($victorys)-1]["seStartYmd"];
+
 		$this->set("victorys", $victorys);
+		$this->set("gradeOnly", $gradeOnly);
+		$this->set("moreStart", $moreStart);
 		$this->set("display", $this->display);
 	}
 
-	function findVictorys($seCd, $gradeOnly){
+	function findVictorys($fromSeStartYmd, $gradeOnly){
 		$codeConvert = new CodeConvert();
 
 		$victorys = array();
 
-		$RSerieses = $this->RSeries->findRangeSeries($seCd, $gradeOnly);
+		$RSerieses = $this->RSeries->findRangeSeries($fromSeStartYmd, $gradeOnly);
 
 		foreach($RSerieses as $RSerieRow){
 			$RSeries = $RSerieRow["R_SERIES"];
 			$Races = $this->RRace->findRaceVictorys($RSeries["SE_CD"]);
+$this->log($RSeries);
 			foreach($Races as $RaceRow){
 				$Race = $RaceRow["R_RACE"];
 
@@ -48,6 +55,7 @@ class VictorysController extends AppController {
 						"seRankName" => $codeConvert->convertSeRankName($RSeries["SE_RANK_CD"]),
 						"seTitle" => $RSeries["SE_TITLE"],
 						"nightK" => $RSeries["NIGHT_K"],
+						"seStartYmd" => $RSeries["SE_START_YMD"],
 						"seDay" => $Race["SE_DAY"],
 						"rcTypeName" => $Race["RC_TYPE_NM"],
 						"distance" => $Race["DISTANCE"],
@@ -66,6 +74,30 @@ class VictorysController extends AppController {
 		}
 
 		return $victorys;
+	}
+
+	/****************************************************
+	 * Ajax用api
+	***************************************************/
+	public function findRacesMore() {
+		$this->autoRender = FALSE;
+		if($this->request->is('ajax')){
+			if(isset($this->params['url']["gradeOnly"]))
+				$gradeOnly = $this->params['url']["gradeOnly"];
+			else
+				$gradeOnly = false;
+
+			if(isset($this->params['url']["moreStart"]))
+				$moreStart = $this->params['url']["moreStart"];
+			else
+				$moreStart = "";
+
+			$victorys = $this->findVictorys($moreStart, $gradeOnly);
+
+			$status = true;
+
+			return json_encode(compact('status', 'victorys', 'error'));
+		}
 	}
 
 }
