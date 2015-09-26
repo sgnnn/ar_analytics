@@ -71,9 +71,6 @@ class RRecode extends AppModel {
     public function findHeatCalc($rrCd, $TryrunTime, $heat, $date){
     	$heatClac = $this->findHeatCalcPeriod($rrCd, $TryrunTime, $heat, $date, 5);
 
-		if(count($heatClac) <= 0 or $heatClac[0][0]["recode_count"] < 3)
-			$heatClac = $this->findHeatCalcPeriod($rrCd, $TryrunTime, $heat, $date, 10);
-
 		if(count($heatClac) > 0)
 			return $heatClac[0][0];
 		else
@@ -153,8 +150,8 @@ class RRecode extends AppModel {
 
     	$params = array(
     						$rrCd,
-    						str_pad($TryrunTime - 0.01, 4, "0"),
-    						str_pad($TryrunTime + 0.01, 4, "0"),
+    						str_pad($TryrunTime - 0.02, 4, "0"),
+    						str_pad($TryrunTime + 0.02, 4, "0"),
     						$heat - $heatPeriod,
     						$heat + $heatPeriod,
     						$date

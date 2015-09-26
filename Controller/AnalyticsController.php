@@ -339,8 +339,15 @@ class AnalyticsController extends AppController {
 
 			$fields = array('round(avg(agari_time), 3) avg_agari_time');
 			$groups = array("series_code", "series_day", "race_number", "recode_number");
+			$agariConditions = array(
+					"series_code" => $this->seCd,
+					"series_day" => $this->seDay,
+					"race_number" => $this->rcNum,
+					"recode_number" => $latestTryrun["recode_number"],
+					"recode_count >=" => '3'
+			);
 
-			$latestCalcAgariTime = $this->LatestCalc->find('first', array("fields" => $fields, "conditions" => $calcConditions, "group" => $groups));
+			$latestCalcAgariTime = $this->LatestCalc->find('first', array("fields" => $fields, "conditions" => $agariConditions, "group" => $groups));
 
 			if(count($latestCalcAgariTime) <= 0)
 				continue;

@@ -9,14 +9,20 @@
 		$tryrunTime = "";
 		$agariTime = "";
 
-		if(count($latestTryruns) > 0){
-			$latestTryrun = $latestTryruns[$RRecode["WAKU_NUM"]-1]["LatestTryrun"];
-			$tryrunTime = $latestTryrun["tryrun_time"];
+		foreach($latestTryruns as $latestTryrunRow){
+			$latestTryrun = $latestTryrunRow["LatestTryrun"];
+			if($latestTryrun["recode_number"] == $RRecode["WAKU_NUM"]){
+				$tryrunTime = $latestTryrun["tryrun_time"];
+				break;
+			}
 		}
 
-		if(count($latestAnalyticsCalcs) > 0){
-			$latestAnalyticsCalc = $latestAnalyticsCalcs[$RRecode["WAKU_NUM"]-1]["LatestCalc"];
-			$agariTime = $latestAnalyticsCalc["agari_time"];
+		foreach($latestAnalyticsCalcs as $latestAnalyticsCalcRow){
+			$latestAnalyticsCalc = $latestAnalyticsCalcRow["LatestCalc"];
+			if($latestAnalyticsCalc["recode_number"] == $RRecode["WAKU_NUM"]){
+				$agariTime = $latestAnalyticsCalc["agari_time"];
+				break;
+			}
 		}
 ?>
 		<div>
