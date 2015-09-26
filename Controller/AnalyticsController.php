@@ -20,9 +20,11 @@ class AnalyticsController extends AppController {
 		if(!$this->exec)
 			return;
 
-		$this->updateLatests();
-
 		$today = $this->RRacedate->findToday();
+
+		// 一時的な回避
+		if(date("Ymd") >= $today and date("H") >= 10)
+			$this->updateLatests();
 
 		$conditions = array(
 			"series_code" => $this->seCd,
@@ -37,7 +39,7 @@ class AnalyticsController extends AppController {
 
 		$this->saveLatestCalc("tryrun", $latestRace, $latestTryruns, $today);
 		$this->saveLatestCalc("heat", $latestRace, $latestTryruns, $today);
-		$this->saveLatestCalc("recent", $latestRace, $latestTryruns, $today);
+		//$this->saveLatestCalc("recent", $latestRace, $latestTryruns, $today);
 		$this->saveLatestAnalyticsCalc($latestRace, $latestTryruns, $today);
 
 		$calcConditions = array(
@@ -179,13 +181,7 @@ class AnalyticsController extends AppController {
 
 		$latestRace = $this->LatestRace->find('first', array("conditions" => $conditions));
 
-		if($latestRace == null)
-			$this->LatestRace->save(array(
-				'series_code' => $this->seCd,
-				'series_day' => $this->seDay,
-				'race_number' => $this->rcNum
-			));
-		else
+		if($latestRace != null)
 			if($latestRace["LatestRace"]["tryrun_end"])
 				return;
 
@@ -229,13 +225,16 @@ class AnalyticsController extends AppController {
 
 			if(isset($datas["raceDatas"])){
 				$count = $this->LatestTryrun->find('count', array("conditions" => $conditions));
-
-				$data = array(
-					"runway_code" => $codeConvert->convertRunwayCode($datas["raceDatas"]["runway"]),
-					"runway_heat" => $datas["raceDatas"]["runwayHeat"],
-					"tryrun_end" => $count > 0 ? true : false
-				);
-				$this->LatestRace->updateAll($data, $conditions);
+				if($count > 0){
+					$this->LatestRace->save(array(
+						'series_code' => $this->seCd,
+						'series_day' => $this->seDay,
+						'race_number' => $this->rcNum,
+						"runway_code" => $codeConvert->convertRunwayCode($datas["raceDatas"]["runway"]),
+						"runway_heat" => $datas["raceDatas"]["runwayHeat"],
+						"tryrun_end" => true
+					));
+				}
 			}
 		}
 	}
