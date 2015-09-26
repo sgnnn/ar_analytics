@@ -1,5 +1,12 @@
 <?php include('analytics_header.php'); ?>
 
+<?php if(!empty($latestRace)){ ?>
+	<div class="latest_race_data">
+		<p><?php echo $codeConvert->convertRunwayName($latestRace["LatestRace"]["runway_code"]). "走路"; ?></p>
+		<p><?php echo $latestRace["LatestRace"]["runway_heat"] . "℃"; ?></p>
+	</div>
+<?php } ?>
+
 <div class="analytics_recodes">
 <?php
 	foreach($RRecodes as $RRecodeRow){

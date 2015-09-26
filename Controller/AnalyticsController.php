@@ -7,7 +7,7 @@ App::uses('Analytics', 'Vendor');
 
 class AnalyticsController extends AppController {
 
-	public $uses = array("RRace", "RRecode", "RRacedate", "RRacer", "LatestRace", "LatestTryrun", "LatestCalc");
+	public $uses = array("RSeries", "RRace", "RRecode", "RRacedate", "RRacer", "LatestRace", "LatestTryrun", "LatestCalc");
 
 	public $seCd;
 	public $seDay;
@@ -53,6 +53,7 @@ class AnalyticsController extends AppController {
 
 		$this->set("RRecodes", $RRecodes);
 		$this->set("latestAnalyticsCalcs", $latestAnalyticsCalcs);
+		$this->set("latestRace", $latestRace);
 		$this->set("latestTryruns", $latestTryruns);
 	}
 
@@ -134,8 +135,12 @@ class AnalyticsController extends AppController {
 		if(!is_numeric($this->rcNum))
 			$this->exec = false;
 
+		$RSeries = $this->RSeries->findFirstSeries($this->seCd);
+		if(empty($RSeries))
+			$this->exec = false;
+
 		$RRace = $this->RRace->findFirstRace($this->seCd, $this->seDay, $this->rcNum);
-		if($RRace == null)
+		if(empty($RRace))
 			$this->exec = false;
 
 		$rcCount = $this->RRace->findRaceCount($this->seCd, $this->seDay);
@@ -144,6 +149,8 @@ class AnalyticsController extends AppController {
 		$this->set("seDay",  $this->seDay);
 		$this->set("rcNum",  $this->rcNum);
 		$this->set("rcCount",  $rcCount);
+		$this->set("RSeries",  $RSeries);
+		$this->set("RRace",  $RRace);
 	}
 
 	function updateLatests(){

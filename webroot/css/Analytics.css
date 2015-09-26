@@ -78,6 +78,30 @@
 	background:#9057FF;
 }
 
+.series_data{
+	margin: 10px 0px;
+}
+
+.series_data p{
+	display: inline-block;
+	text-shadow: 3px 2px 1px #999999;
+	font-weight:bold;
+	font-size: 20pt;
+	margin-left: 20px;
+}
+
+.race_data, .latest_race_data{
+	margin: 10px 0px;
+}
+
+.race_data p, .latest_race_data p{
+	display: inline-block;
+	margin-left: 20px;
+	font-weight:bold;
+	font-size: 12pt;
+	text-shadow: 3px 2px 1px #999999;
+}
+
 /*********************************
  * analytics
  ********************************/

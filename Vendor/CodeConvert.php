@@ -25,6 +25,13 @@ class CodeConvert{
 				"4" => "湿"
 			);
 
+	public $distances = array(
+				"3100" => "3100M (6周)",
+				"4100" => "4100M (8周)",
+				"5100" => "5100M (10周)",
+				"3600" => "3600M (7周)"
+			);
+
 	function __construct(){
 
 	}
@@ -55,5 +62,10 @@ class CodeConvert{
 				return "1";
 		}
 	}
+
+	function convertDistanceName($distance){
+		return $this->distances[$distance];
+	}
+
 }
 ?>

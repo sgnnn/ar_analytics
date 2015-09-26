@@ -1,7 +1,18 @@
+<?php App::uses('CodeConvert', 'Vendor'); ?>
+<?php $codeConvert = new CodeConvert(); ?>
+
 <input type="hidden" id="selectAction" value="<?php echo $action; ?>">
 <input type="hidden" id="seCd" value="<?php echo $seCd; ?>">
 <input type="hidden" id="seDay" value="<?php echo $seDay; ?>">
 <input type="hidden" id="rcNum" value="<?php echo $rcNum; ?>">
+
+<?php if(!empty($RSeries)){ ?>
+<div class="series_data">
+	<p><?php echo $codeConvert->convertLgName($RSeries["LG_CD"]); ?></p>
+	<p><?php echo $RSeries["SE_TITLE"]; ?></p>
+</div>
+<?php } ?>
+
 <table class="analytics_select">
 	<tr>
 		<td rowspan=3><p id="analytics" class="full">分析</p></td>
@@ -27,3 +38,10 @@
 		<?php } ?>
 	<?php } ?>
 </div>
+
+<?php if(!empty($RRace)){ ?>
+<div class="race_data">
+	<p><?php echo $RRace["RC_TYPE_NM"]; ?></p>
+	<p><?php echo $codeConvert->convertDistanceName($RRace["DISTANCE"]); ?></p>
+</div>
+<?php } ?>
