@@ -98,15 +98,15 @@
 	display: inline-block;
 	margin-left: 20px;
 	font-weight:bold;
-	font-size: 12pt;
-	text-shadow: 3px 2px 1px #999999;
+	font-size: 14pt;
+	text-shadow: 1px 1px 1px #999999;
 }
 
 /*********************************
  * analytics
  ********************************/
 .analytics_recodes{
-
+	margin-top: 20px;
 }
 
 .comment{
