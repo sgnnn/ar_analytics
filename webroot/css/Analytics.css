@@ -102,9 +102,6 @@
 	text-shadow: 1px 1px 1px #999999;
 }
 
-/*********************************
- * analytics
- ********************************/
 .analytics_recodes{
 	margin: 20px 0px;
 }
@@ -155,13 +152,16 @@
 	text-shadow: 1px 1px 1px #999999;
 }
 
-.analytics_recodes p:nth-child(5){
+/*********************************
+ * analytics
+ ********************************/
+.analytics_version p:nth-child(5){
 	width: 100px;
 	font-weight:bold;
 	font-size: 16pt;
 }
 
-.analytics_recodes p:nth-child(6){
+.analytics_version p:nth-child(6){
 	width: 160px;
 	font-weight:bold;
 	font-size: 16pt;
@@ -170,14 +170,43 @@
 /*********************************
  * information
  ********************************/
-
-.informationRecodes{
-	text-align: left;
-	margin: 20px;
+.information_version p:nth-child(5){
+	font-weight:bold;
+	width: 70px;
+	padding: 2px 5px;
+	margin: 0px 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
-.informationRecodes div p{
-	display: inline-block;
+.information_version p:nth-child(6){
+	width: 70px;
+	font-weight:bold;
+	font-size: 14pt;
+}
+
+.information_version p:nth-child(7),
+.information_version p:nth-child(8){
+	width: 70px;
+	font-weight:bold;
+	font-size: 10pt;
+
+	padding: 2px 5px;
+	margin: 0px 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	color: #fff;
+	background-color: #805d2c;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#805d2c), to(#543305));
+	background-image: -webkit-linear-gradient(top, #805d2c, #543305);
+	background-image: -moz-linear-gradient(top, #805d2c, #543305);
+	background-image: -ms-linear-gradient(top, #805d2c, #543305);
+	background-image: -o-linear-gradient(top, #805d2c, #543305);
+	background-image: linear-gradient(to bottom, #805d2c, #543305);
+	filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#805d2c, endColorstr=#543305);
 }
 
 /*********************************

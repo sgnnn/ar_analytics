@@ -7,7 +7,17 @@ App::uses('Analytics', 'Vendor');
 
 class AnalyticsController extends AppController {
 
-	public $uses = array("RSeries", "RRace", "RRecode", "RRacedate", "RRacer", "LatestRace", "LatestTryrun", "LatestCalc");
+	public $uses = array(
+						"RSeries",
+						"RRace",
+						"RRecode",
+						"RRacedate",
+						"RRacer",
+						"LatestRace",
+						"LatestTryrun",
+						"LatestCalc",
+						"Difftime"
+	);
 
 	public $seCd;
 	public $seDay;
@@ -39,6 +49,7 @@ class AnalyticsController extends AppController {
 
 		$this->saveLatestCalc("tryrun", $latestRace, $latestTryruns, $today);
 		$this->saveLatestCalc("heat", $latestRace, $latestTryruns, $today);
+		$this->saveLatestCalc("diff", $latestRace, $latestTryruns, $today);
 		//$this->saveLatestCalc("recent", $latestRace, $latestTryruns, $today);
 		$this->saveLatestAnalyticsCalc($latestRace, $latestTryruns, $today);
 
@@ -51,9 +62,6 @@ class AnalyticsController extends AppController {
 		$orders = array("recode_number");
 		$latestAnalyticsCalcs = $this->LatestCalc->find('all', array("conditions" => $calcConditions, "order" => $orders));
 
-		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
-
-		$this->set("RRecodes", $RRecodes);
 		$this->set("latestAnalyticsCalcs", $latestAnalyticsCalcs);
 		$this->set("latestRace", $latestRace);
 		$this->set("latestTryruns", $latestTryruns);
@@ -64,10 +72,6 @@ class AnalyticsController extends AppController {
 
 		if(!$this->exec)
 			return;
-
-		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
-
-		$this->set("RRecodes", $RRecodes);
 
 	}
 
@@ -92,6 +96,7 @@ class AnalyticsController extends AppController {
 
 		if(!$this->exec)
 			return;
+
 
 	}
 
@@ -146,6 +151,7 @@ class AnalyticsController extends AppController {
 			$this->exec = false;
 
 		$rcCount = $this->RRace->findRaceCount($this->seCd, $this->seDay);
+		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
 
 		$this->set("seCd",  $this->seCd);
 		$this->set("seDay",  $this->seDay);
@@ -153,6 +159,7 @@ class AnalyticsController extends AppController {
 		$this->set("rcCount",  $rcCount);
 		$this->set("RSeries",  $RSeries);
 		$this->set("RRace",  $RRace);
+		$this->set("RRecodes", $RRecodes);
 	}
 
 	function updateLatests(){
@@ -243,6 +250,9 @@ class AnalyticsController extends AppController {
 		if(count($latestRace) <= 0)
 			return;
 
+		if($latestRace["LatestRace"]["runway_code"] === "4")
+			return;
+
 		if(count($latestTryruns) <= 0)
 			return;
 
@@ -273,7 +283,17 @@ class AnalyticsController extends AppController {
 				$RRecodeCalc = $this->RRecode->findTryrunCalc($RRecode["RR_CD"], $latestTryrun["tryrun_time"], $today);
 			elseif ($calcType === "heat")
 				$RRecodeCalc = $this->RRecode->findHeatCalc($RRecode["RR_CD"], $latestTryrun["tryrun_time"], $latestRace["LatestRace"]["runway_heat"], $today);
-			elseif ($calcType === "recent")
+			elseif ($calcType === "diff"){
+				$difftime = $this->Difftime->find('first', array("conditions" => array("racer_code" => $latestTryrun["racer_code"])));
+
+				if(count($difftime) <= 0)
+					continue;
+
+				$RRecodeCalc = array(
+					"recode_count" => 9,
+					"avg_agari_time" => $latestTryrun["tryrun_time"] + $difftime["Difftime"]["difftime"]
+				);
+			} elseif ($calcType === "recent")
 				$RRecodeCalc = $this->RRecode->findRecentCalc($RRecode["RR_CD"], $today);
 
 			if($RRecodeCalc["recode_count"] <= 0)
@@ -315,32 +335,9 @@ class AnalyticsController extends AppController {
 			if(count($latestCalcs) <= 0)
 				continue;
 
-			$latestCalcHeat = null;
-			$latestCalcTryrun = null;
-
-			$isContinue = false;
-
 			$RRace = $this->RRace->findFirstRace($this->seCd, $this->seDay, $this->rcNum);
 
 			if(count($RRace) <= 0)
-				continue;
-
-			foreach($latestCalcs as $latestCalcRow){
-				$latestCalc = $latestCalcRow["LatestCalc"];
-				if($latestCalc["calc_type"] === 'heat' and $latestCalc["recode_count"] >= 3)
-					$latestCalcHeat = $latestCalc;
-
-				if($latestCalc["calc_type"] === 'tryrun')
-					$latestCalcTryrun = $latestCalc;
-
-				if($latestCalc["calc_type"] === 'analytics')
-					$isContinue = true;
-			}
-
-			if($isContinue)
-				continue;
-
-			if($latestCalcTryrun == null)
 				continue;
 
 			$fields = array('round(avg(agari_time), 3) avg_agari_time');

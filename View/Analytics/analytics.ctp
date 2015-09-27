@@ -7,7 +7,7 @@
 	</div>
 <?php } ?>
 
-<div class="analytics_recodes">
+<div class="analytics_recodes analytics_version">
 <?php
 	foreach($RRecodes as $RRecodeRow){
 		$RRecode = $RRecodeRow["R_RECODE"];

@@ -28,7 +28,7 @@ $(document).ready(function(){
 	},function() {
 		$(this).stop().animate({ opacity: "1.0" }, 1000);
 	});
-
+/*
 	var colorboxs = 	"#entry," +
 						"#login," +
 						"#update," +
@@ -40,5 +40,5 @@ $(document).ready(function(){
 		maxHeight:"90%",
 		opacity: 0.7
 	});
-
+*/
 });
