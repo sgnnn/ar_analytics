@@ -133,6 +133,53 @@ class RRecode extends AppModel {
 			return array();
     }
 
+    public function findRecentSeriesCode($seriesCode, $rrCd){
+    	$sql = "select R_RECODE.SE_CD ";
+    	$sql = $sql. "from R_RECODE, R_RACE ";
+    	$sql = $sql. "where R_RECODE.SE_CD = R_RACE.SE_CD ";
+    	$sql = $sql. "and   R_RECODE.SE_DAY = R_RACE.SE_DAY ";
+    	$sql = $sql. "and   R_RECODE.RC_NUM = R_RACE.RC_NUM ";
+    	$sql = $sql. "and   R_RECODE.RR_CD = ? ";
+    	$sql = $sql. "and   R_RECODE.SE_CD <> ? ";
+    	$sql = $sql. "order by R_RACE.RCDT_YMD desc limit 1";
+
+    	$params = array(
+    						$rrCd,
+    						$seriesCode
+    					);
+
+		$result = $this->query($sql, $params);
+
+		if(count($result) > 0)
+			return $result[0]["R_RECODE"];
+		else
+			return array();
+    }
+
+    public function findRecentRecodes($seriesCode, $rrCd){
+    	$sql = "select R_RECODE.*, R_RACE.* ";
+    	$sql = $sql. "from R_RECODE, R_RACE ";
+    	$sql = $sql. "where R_RECODE.SE_CD = R_RACE.SE_CD ";
+    	$sql = $sql. "and   R_RECODE.SE_DAY = R_RACE.SE_DAY ";
+    	$sql = $sql. "and   R_RECODE.RC_NUM = R_RACE.RC_NUM ";
+    	$sql = $sql. "and   R_RECODE.RR_CD = ? ";
+    	$sql = $sql. "and   R_RECODE.SE_CD = ? ";
+    	$sql = $sql. "and   R_RACE.RESULT_K = '1' ";
+    	$sql = $sql. "order by R_RACE.RCDT_YMD desc";
+
+    	$params = array(
+    						$rrCd,
+    						$seriesCode
+    					);
+
+		$result = $this->query($sql, $params);
+
+		if(count($result) > 0)
+			return $result;
+		else
+			return array();
+    }
+
     function findHeatCalcPeriod($rrCd, $TryrunTime, $heat, $date, $heatPeriod){
     	$sql = "select round(avg(R_RECODE.AGARI_TIME), 3) avg_agari_time, count(1) as recode_count ";
     	$sql = $sql. "from R_RECODE, R_RACE ";

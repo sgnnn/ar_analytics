@@ -216,6 +216,13 @@
 /*********************************
  * current
  ********************************/
+.recentRecodes{
+
+}
+
+.recentRecodes p{
+	display: inline-block;
+}
 
 /*********************************
  * holding

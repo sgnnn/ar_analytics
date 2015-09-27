@@ -81,6 +81,27 @@ class AnalyticsController extends AppController {
 		if(!$this->exec)
 			return;
 
+		foreach($this->RRecodes as $RRecodeRow){
+			$RRecode = $RRecodeRow["R_RECODE"];
+
+			$recentCurrentRecodes = $this->RRecode->findRecentRecodes($RRecode["SE_CD"], $RRecode["RR_CD"]);
+
+			$recentBeforeRecodes = array();
+			$RecentSeriesCode = $this->RRecode->findRecentSeriesCode($RRecode["SE_CD"], $RRecode["RR_CD"]);
+			if(count($RecentSeriesCode) > 0)
+				$recentBeforeRecodes = $this->RRecode->findRecentRecodes($RecentSeriesCode["SE_CD"], $RRecode["RR_CD"]);
+
+			$recentSeriesRecodes = array(
+				"currentRecodes" => $recentCurrentRecodes,
+				"beforeRecodes" => $recentBeforeRecodes
+			);
+
+			$recentRecodes = array(
+				"recentSeriesRecodes" => $recentSeriesRecodes
+			);
+
+			$this->set("recentRecodes_" . $RRecode["WAKU_NUM"],  $recentRecodes);
+		}
 	}
 
 	public function current() {
@@ -151,7 +172,7 @@ class AnalyticsController extends AppController {
 			$this->exec = false;
 
 		$rcCount = $this->RRace->findRaceCount($this->seCd, $this->seDay);
-		$RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
+		$this->RRecodes = $this->RRecode->findOneRaceRecodesAndRacer($this->seCd, $this->seDay, $this->rcNum);
 
 		$this->set("seCd",  $this->seCd);
 		$this->set("seDay",  $this->seDay);
@@ -159,7 +180,7 @@ class AnalyticsController extends AppController {
 		$this->set("rcCount",  $rcCount);
 		$this->set("RSeries",  $RSeries);
 		$this->set("RRace",  $RRace);
-		$this->set("RRecodes", $RRecodes);
+		$this->set("RRecodes", $this->RRecodes);
 	}
 
 	function updateLatests(){

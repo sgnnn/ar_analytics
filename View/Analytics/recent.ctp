@@ -12,5 +12,33 @@
 			<p class="<?php echo substr($RRacer["RANK_NEW"], 0, 1); ?>_class"><?php echo $RRacer["RANK_NEW"]; ?></p>
 			<p><?php echo $RRacer["RR_NM"]; ?></p>
 		</div>
+
+		<?php
+			$recentRecodesName = "recentRecodes_" . $RRecode["WAKU_NUM"];
+			if(isset(${$recentRecodesName})){
+				$recentSeriesRecodes = ${$recentRecodesName}["recentSeriesRecodes"];
+
+				foreach($recentSeriesRecodes as $recentRecodes){
+					if(count($recentRecodes) > 0){
+		?>
+						<div>
+							<?php echo $recentRecodes[0]["R_RECODE"]["SE_CD"]; ?>
+						</div>
+		<?php
+					}
+
+					foreach($recentRecodes as $recentRecodeRow){
+						$recentRecode = $recentRecodeRow["R_RECODE"];
+						$recentRace = $recentRecodeRow["R_RACE"];
+		?>
+						<div class="recentRecodes">
+							<p><?php echo $recentRace["RCDT_YMD"]; ?></p>
+						</div>
+		<?php
+					}
+				}
+			}
+		 ?>
+
 	<?php } ?>
 </div>
