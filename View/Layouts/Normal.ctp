@@ -66,7 +66,7 @@
 			-->
 
 			<div class="submits">
-				<a id="entry" href="#inline-entry">新規登録</a>
+				<!--<a id="entry" href="#inline-entry">新規登録</a>-->
 				<a id="login" href="#inline-login">ログイン</a>
 			</div>
 		</div>
