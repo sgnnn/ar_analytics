@@ -1,5 +1,7 @@
 <?php App::uses('CodeConvert', 'Vendor'); ?>
+<?php App::uses('Analytics', 'Vendor'); ?>
 <?php $codeConvert = new CodeConvert(); ?>
+<?php $analytics = new Analytics(); ?>
 
 <input type="hidden" id="selectAction" value="<?php echo $action; ?>">
 <input type="hidden" id="seCd" value="<?php echo $seCd; ?>">

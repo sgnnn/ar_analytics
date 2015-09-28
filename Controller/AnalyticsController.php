@@ -120,6 +120,28 @@ class AnalyticsController extends AppController {
 		if(!$this->exec)
 			return;
 
+		$today = $this->RRacedate->findToday();
+
+		$seasonYear = substr($today, 0, 4);
+
+		foreach($this->RRecodes as $RRecodeRow){
+			$RRecode = $RRecodeRow["R_RECODE"];
+
+			$winCountAll = $this->RRecode->findWinCount($RRecode["RR_CD"], $seasonYear, "all");
+			$winCountNormal = $this->RRecode->findWinCount($RRecode["RR_CD"], $seasonYear, "normal");
+			$winCountWet = $this->RRecode->findWinCount($RRecode["RR_CD"], $seasonYear, "wet");
+			$victoryCount = $this->RRace->findVictoryCount($RRecode["RR_CD"], $seasonYear);
+
+			$seasonCounts = array(
+					"victoryCount" => $victoryCount,
+					"allCount" => $winCountAll,
+					"normalCount" => $winCountNormal,
+					"wetCount" => $winCountWet
+			);
+
+			$this->set("seasonCounts_" . $RRecode["WAKU_NUM"],  $seasonCounts);
+			$this->log($seasonCounts);
+		}
 	}
 
 	public function grade() {

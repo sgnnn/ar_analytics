@@ -4,10 +4,10 @@ class RRace extends AppModel {
 	public $useTable = false;
 
 	public function findRaceCount($seCd, $seDay){
-        $sql = "select count(1) as COUNT from R_RACE where SE_CD = ? and SE_DAY = ?";
+        $sql = "select count(1) as race_count from R_RACE where SE_CD = ? and SE_DAY = ?";
         $params = array($seCd, $seDay);
 		$result = $this->query($sql, $params);
-        return $result[0][0]["COUNT"];
+        return $result[0][0]["race_count"];
     }
 
 	public function findFirstRace($seCd, $seDay, $rcNum){
@@ -90,6 +90,22 @@ class RRace extends AppModel {
     		return $result;
     	else
     		return array();
+    }
+
+    public function findVictoryCount($racerCode, $seasonYear){
+    	$sql = "select  count(1) as victory_count ";
+    	$sql = $sql. "from R_RECODE, R_RACE ";
+    	$sql = $sql. "where R_RECODE.SE_CD = R_RACE.SE_CD ";
+    	$sql = $sql. "and   R_RECODE.SE_DAY = R_RACE.SE_DAY ";
+    	$sql = $sql. "and   R_RECODE.RC_NUM = R_RACE.RC_NUM ";
+    	$sql = $sql. "and   R_RACE.RC_TYPE_K = '08' ";
+    	$sql = $sql. "and   R_RECODE.RC_RANK = 1 ";
+    	$sql = $sql. "and   R_RECODE.RR_CD = ? ";
+    	$sql = $sql. "and   R_RACE.RCDT_YMD like ? ";
+
+    	$params = array($racerCode, $seasonYear . "%");
+    	$result = $this->query($sql, $params);
+    	return $result[0][0]["victory_count"];
     }
 
 }

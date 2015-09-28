@@ -6,6 +6,16 @@ class Analytics{
 
 	}
 
+	public function calcRate($recodeCount, $winCount){
+		if($recodeCount <= 0)
+			return 0;
+
+		if($winCount <= 0)
+			return 0;
+
+		return round($winCount / $recodeCount * 100, 1);
+	}
+
 	public function supplementRank($rank){
 		$rankCategory = substr($rank, 0, 1);
 		$rankNumber = substr($rank, 1);
