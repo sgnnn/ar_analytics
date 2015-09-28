@@ -112,25 +112,8 @@ class AnalyticsController extends AppController {
 
 	}
 
-	public function holding() {
-		$this->execShare("holding");
-
-		if(!$this->exec)
-			return;
-
-
-	}
-
 	public function season() {
 		$this->execShare("season");
-
-		if(!$this->exec)
-			return;
-
-	}
-
-	public function before() {
-		$this->execShare("before");
 
 		if(!$this->exec)
 			return;

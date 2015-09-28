@@ -18,9 +18,7 @@ $(document).ready(function(){
 	$("#information").click(function() 	{window.location.href = './information' + param;});
 	$("#recent").click(function()	 	{window.location.href = './recent' + param;});
 	$("#current").click(function() 		{window.location.href = './current' + param;});
-	$("#holding").click(function() 		{window.location.href = './holding' + param;});
 	$("#season").click(function() 		{window.location.href = './season' + param;});
-	$("#before").click(function() 		{window.location.href = './before' + param;});
 	$("#grade").click(function() 		{window.location.href = './grade' + param;});
 
 	var hovers =	"  .full" +
