@@ -210,6 +210,37 @@ class RRecode extends AppModel {
 			return array();
     }
 
+    public function findCurrentWinCount($racerCode, $currentFrom, $currentTo, $runway){
+    	$sql = "select ";
+    	$sql = $sql. "  count(1) as recode_count ";
+    	$sql = $sql. ", sum(if(R_RECODE.RC_RANK = 1,  1, 0)) as rank1_count ";
+    	$sql = $sql. ", sum(if(R_RECODE.RC_RANK <= 2, 1, 0)) as rank2_count ";
+    	$sql = $sql. "from R_RECODE, R_RACE ";
+    	$sql = $sql. "where R_RECODE.SE_CD = R_RACE.SE_CD ";
+    	$sql = $sql. "and   R_RECODE.SE_DAY = R_RACE.SE_DAY ";
+    	$sql = $sql. "and   R_RECODE.RC_NUM = R_RACE.RC_NUM ";
+    	$sql = $sql. "and   R_RECODE.RR_CD = ? ";
+    	$sql = $sql. "and   R_RACE.RCDT_YMD between ? and ? ";
+
+    	if($runway === "normal")
+    		$sql = $sql. "and   R_RACE.RUNWAY_K in ('1', '2') ";
+    	elseif ($runway === "wet")
+    	$sql = $sql. "and   R_RACE.RUNWAY_K = '4' ";
+
+    	$params = array(
+    			$racerCode,
+    			$currentFrom,
+    			$currentTo
+    	);
+
+    	$result = $this->query($sql, $params);
+
+    	if(count($result) > 0)
+    		return $result[0][0];
+    	else
+    		return array();
+    }
+
     function findHeatCalcPeriod($rrCd, $TryrunTime, $heat, $date, $heatPeriod){
     	$sql = "select round(avg(R_RECODE.AGARI_TIME), 3) avg_agari_time, count(1) as recode_count ";
     	$sql = $sql. "from R_RECODE, R_RACE ";

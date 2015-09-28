@@ -108,4 +108,20 @@ class RRace extends AppModel {
     	return $result[0][0]["victory_count"];
     }
 
+    public function findCurrentVictoryCount($racerCode, $currentFrom, $currentTo){
+    	$sql = "select  count(1) as victory_count ";
+    	$sql = $sql. "from R_RECODE, R_RACE ";
+    	$sql = $sql. "where R_RECODE.SE_CD = R_RACE.SE_CD ";
+    	$sql = $sql. "and   R_RECODE.SE_DAY = R_RACE.SE_DAY ";
+    	$sql = $sql. "and   R_RECODE.RC_NUM = R_RACE.RC_NUM ";
+    	$sql = $sql. "and   R_RACE.RC_TYPE_K = '08' ";
+    	$sql = $sql. "and   R_RECODE.RC_RANK = 1 ";
+    	$sql = $sql. "and   R_RECODE.RR_CD = ? ";
+    	$sql = $sql. "and   R_RACE.RCDT_YMD between ? and ?";
+
+    	$params = array($racerCode, $currentFrom, $currentTo);
+    	$result = $this->query($sql, $params);
+    	return $result[0][0]["victory_count"];
+    }
+
 }

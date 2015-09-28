@@ -112,6 +112,26 @@ class AnalyticsController extends AppController {
 		if(!$this->exec)
 			return;
 
+		$currentFrom = $this->RRacedate->findCurrentFrom();
+		$currentTo = $this->RRacedate->findCurrentTo();
+
+		foreach($this->RRecodes as $RRecodeRow){
+			$RRecode = $RRecodeRow["R_RECODE"];
+
+			$winCountAll = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $currentFrom, $currentTo, "all");
+			$winCountNormal = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $currentFrom, $currentTo, "normal");
+			$winCountWet = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $currentFrom, $currentTo, "wet");
+			$victoryCount = $this->RRace->findCurrentVictoryCount($RRecode["RR_CD"], $currentFrom, $currentTo);
+
+			$currentCounts = array(
+					"victoryCount" => $victoryCount,
+					"allCount" => $winCountAll,
+					"normalCount" => $winCountNormal,
+					"wetCount" => $winCountWet
+			);
+
+			$this->set("currentCounts_" . $RRecode["WAKU_NUM"],  $currentCounts);
+		}
 	}
 
 	public function season() {
@@ -140,7 +160,6 @@ class AnalyticsController extends AppController {
 			);
 
 			$this->set("seasonCounts_" . $RRecode["WAKU_NUM"],  $seasonCounts);
-			$this->log($seasonCounts);
 		}
 	}
 

@@ -15,7 +15,6 @@
 			<p><?php echo $RRacer["KI"]; ?>期</p>
 		</div>
 
-
 		<div class="win_counts">
 		<?php
 			$seasonCountsName = "seasonCounts_" . $RRecode["WAKU_NUM"];
