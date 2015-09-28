@@ -67,5 +67,14 @@ class CodeConvert{
 		return $this->distances[$distance];
 	}
 
+	function convertDateMdString($dateString){
+		if(empty($dateString))
+			return "";
+
+		$month = ltrim(substr($dateString, 4, 2), "0");
+		$day = ltrim(substr($dateString, 6, 2), "0");
+		return $month . "月 " . $day . "日";
+	}
+
 }
 ?>

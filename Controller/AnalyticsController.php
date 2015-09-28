@@ -88,12 +88,14 @@ class AnalyticsController extends AppController {
 
 			$recentBeforeRecodes = array();
 			$RecentSeriesCode = $this->RRecode->findRecentSeriesCode($RRecode["SE_CD"], $RRecode["RR_CD"]);
-			if(count($RecentSeriesCode) > 0)
+			if(count($RecentSeriesCode) > 0){
 				$recentBeforeRecodes = $this->RRecode->findRecentRecodes($RecentSeriesCode["SE_CD"], $RRecode["RR_CD"]);
+				$beforeSeries = $this->RSeries->findFirstSeries($RecentSeriesCode["SE_CD"]);
+			}
 
 			$recentSeriesRecodes = array(
-				"currentRecodes" => $recentCurrentRecodes,
-				"beforeRecodes" => $recentBeforeRecodes
+				"currentRecodes" => array("recodes" => $recentCurrentRecodes, "series" => $this->rSeries),
+				"beforeRecodes" => array("recodes" => $recentBeforeRecodes, "series" => $beforeSeries)
 			);
 
 			$recentRecodes = array(
@@ -146,8 +148,8 @@ class AnalyticsController extends AppController {
 		if(!is_numeric($this->rcNum))
 			$this->exec = false;
 
-		$RSeries = $this->RSeries->findFirstSeries($this->seCd);
-		if(empty($RSeries))
+		$this->rSeries = $this->RSeries->findFirstSeries($this->seCd);
+		if(empty($this->rSeries))
 			$this->exec = false;
 
 		$RRace = $this->RRace->findFirstRace($this->seCd, $this->seDay, $this->rcNum);
@@ -161,7 +163,7 @@ class AnalyticsController extends AppController {
 		$this->set("seDay",  $this->seDay);
 		$this->set("rcNum",  $this->rcNum);
 		$this->set("rcCount",  $rcCount);
-		$this->set("RSeries",  $RSeries);
+		$this->set("RSeries",  $this->rSeries);
 		$this->set("RRace",  $RRace);
 		$this->set("RRecodes", $this->RRecodes);
 	}
