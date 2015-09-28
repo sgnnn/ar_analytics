@@ -14,7 +14,7 @@ $(document).ready(function(){
 	var rcNum = $("#rcNum").val();
 	var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + rcNum;
 
-	$("#analytics").click(function() 	{window.location.href = './analytics' + param;});
+	$("#analytics").click(function() 	{window.location.href = './analytics' + param; loadingView(true);});
 	$("#information").click(function() 	{window.location.href = './information' + param;});
 	$("#recent").click(function()	 	{window.location.href = './recent' + param;});
 	$("#current").click(function() 		{window.location.href = './current' + param;});
@@ -38,6 +38,9 @@ $(document).ready(function(){
 		var selectRcNum = $(this).attr("id");
 		var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + selectRcNum;
 		window.location.href = './' + selectAction + param;
+
+		if(selectAction == "analytics")
+			loadingView(true);
 	});
 
 });

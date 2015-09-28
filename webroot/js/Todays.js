@@ -69,6 +69,7 @@ $(document).ready(function(){
 		var seDay = $("#seDay").val();
 		var rcNum = $("#rcNum").val();
 		window.location.href = "./Analytics/analytics?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + rcNum;
+		loadingView(true);
 	});
 
 });
