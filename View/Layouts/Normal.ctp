@@ -91,7 +91,8 @@
 				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Victorys">優勝者</a></li>
 
 				<?php $classActive = (isset($display) and $display === "LotomotoMinis") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>LotomotoMinis">モトロトmini</a></li>
+<!--				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>LotomotoMinis">モトロトmini</a></li>
+-->
 			</ul>
 		</div>
 	</nav>
