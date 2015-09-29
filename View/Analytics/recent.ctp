@@ -27,7 +27,7 @@
 
 					if(count($series) > 0){
 		?>
-						<div class="recent_series">
+						<div class="recent_series lg_color_title_<?php echo $series["LG_CD"]; ?>">
 							<p><?php echo $codeConvert->convertLgName($series["LG_CD"]); ?></p>
 							<p><?php echo $codeConvert->convertSeRankName($series["SE_RANK_CD"]); ?></p>
 							<p><?php echo $codeConvert->convertDateMdString($series["SE_START_YMD"]); ?></p>
