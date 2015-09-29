@@ -14,12 +14,12 @@ $(document).ready(function(){
 	var rcNum = $("#rcNum").val();
 	var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + rcNum;
 
-	$("#analytics").click(function() 	{window.location.href = './analytics' + param; loadingView(true);});
-	$("#information").click(function() 	{window.location.href = './information' + param;});
-	$("#recent").click(function()	 	{window.location.href = './recent' + param;});
-	$("#current").click(function() 		{window.location.href = './current' + param;});
-	$("#season").click(function() 		{window.location.href = './season' + param;});
-	$("#grade").click(function() 		{window.location.href = './grade' + param;});
+	$("#analytics").click(function() 	{analyticsLocation('analytics', param);});
+	$("#information").click(function() 	{analyticsLocation('information', param);});
+	$("#recent").click(function()	 	{analyticsLocation('recent', param);});
+	$("#current").click(function() 		{analyticsLocation('current', param);});
+	$("#season").click(function() 		{analyticsLocation('season', param);});
+	$("#grade").click(function() 		{analyticsLocation('grade', param);});
 
 	var hovers =	"  .full" +
 					", .divide" +
@@ -37,8 +37,12 @@ $(document).ready(function(){
 		var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + selectRcNum;
 		window.location.href = './' + selectAction + param;
 
-		if(selectAction == "analytics")
-			loadingView(true);
+		loadingView(true);
 	});
 
 });
+
+function analyticsLocation(action, param){
+	window.location.href = './' + action + param;
+	loadingView(true);
+}
