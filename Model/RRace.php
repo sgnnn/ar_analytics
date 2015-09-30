@@ -25,7 +25,7 @@ class RRace extends AppModel {
 		App::uses('RRacer','Model');
 		$rRacer = new RRacer;
 
-		$sql = "select * from R_RACE where SE_CD = ? and SE_DAY = ? order by RC_NUM";
+		$sql = "select * from B_RACEALL as R_RACE where SE_CD = ? and SE_DAY = ? order by RC_NUM";
         $params = array($seCd, $seDay);
 		$RRaces = $this->query($sql, $params);
 
@@ -82,7 +82,7 @@ class RRace extends AppModel {
     }
 
     public function findRaceVictorys($seCd){
-    	$sql = "select * from R_RACE where SE_CD = ? and RC_TYPE_K = '08' order by SE_DAY desc, RC_NUM desc";
+    	$sql = "select * from B_RACEALL as R_RACE where SE_CD = ? and RC_TYPE_K = '08' order by SE_DAY desc, RC_NUM desc";
     	$params = array($seCd);
     	$result = $this->query($sql, $params);
 
