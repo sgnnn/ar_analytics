@@ -8,10 +8,10 @@
 	/* îwåiä÷òAÇÃê›íË */
 	/*background-color: #2d302e;*/
 	background-color: #292728;
-	filter: alpha(opacity=85);
-	-moz-opacity: 0.85;
-	-khtml-opacity: 0.85;
-	opacity: 0.85;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.60;
+	-khtml-opacity: 0.60;
+	opacity: 0.60;
 	background-image: url(../images/loading.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
