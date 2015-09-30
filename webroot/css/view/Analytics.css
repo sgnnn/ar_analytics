@@ -172,6 +172,60 @@
 	font-size: 16pt;
 }
 
+.level_count{
+	margin: 10px 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.level_count .race_count{
+	width: 100px;
+	font-weight:bold;
+	font-size: 14pt;
+}
+
+.level_count .race_count p{
+	width: 100px;
+	margin-bottom: 3px;
+	font-size: 10pt;
+}
+
+.level_count .race_count span{
+	width: 100px;
+	margin: 0px 3px;
+	font-size: 10pt;
+}
+
+.level_count .count{
+	width: 200px;
+}
+
+.level_count .count p{
+	display: inline-block;
+	font-weight:bold;
+}
+
+.level_count .count p:nth-child(1){
+	text-align: right;
+	font-size: 10pt;
+	margin-right: 10px;
+	width: 70px;
+}
+
+.level_count .count p:nth-child(2){
+	text-align: right;
+	font-size: 12pt;
+	margin-right: 5px;
+	width: 30px;
+}
+
+.level_count .count p:nth-child(3){
+	text-align: left;
+	font-weight:bold;
+	font-size: 10pt;
+	width: 70px;
+}
+
 /*********************************
  * information
  ********************************/

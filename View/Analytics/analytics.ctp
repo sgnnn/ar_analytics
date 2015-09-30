@@ -51,12 +51,34 @@
 		</div>
 
 		<?php if($isLevel){ ?>
-		<div>
-			<p><?php echo $performanceLevel["race_count"]; ?></p>
-			<p><?php echo $performanceLevel["rank1_count"]. " (" . $performanceLevel["rank1_rate"] . "%)"; ?></p>
-			<p><?php echo $performanceLevel["rank2_count"]. " (" . $performanceLevel["rank2_rate"] . "%)"; ?></p>
-			<p><?php echo $performanceLevel["rank3_count"]. " (" . $performanceLevel["rank3_rate"] . "%)"; ?></p>
-		</div>
+		<table class="level_count">
+			<tr>
+				<td class="race_count" rowspan=3>
+					<p>同レベルレース</p>
+					<?php echo $performanceLevel["race_count"]; ?>
+					<span>走</span>
+				</td>
+				<td class="count">
+					<p>単勝</p>
+					<p><?php echo $performanceLevel["rank1_count"]; ?></p>
+					<p>(<?php echo $performanceLevel["rank1_rate"] . "%"; ?>)</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="count">
+					<p>2連対</p>
+					<p><?php echo $performanceLevel["rank2_count"]; ?></p>
+					<p>(<?php echo $performanceLevel["rank2_rate"] . "%"; ?>)</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="count">
+					<p>3連対</p>
+					<p><?php echo $performanceLevel["rank3_count"]; ?></p>
+					<p>(<?php echo $performanceLevel["rank3_rate"] . "%"; ?>)</p>
+				</td>
+			</tr>
+		</table>
 		<?php } ?>
 	<?php } ?>
 </div>
