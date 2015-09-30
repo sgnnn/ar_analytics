@@ -215,7 +215,7 @@
 }
 
 /*********************************
- * current
+ * recent
  ********************************/
 .recent_version{
 	margin-top: 10px;
@@ -381,14 +381,62 @@
 }
 
 /*********************************
- * recent
- ********************************/
-
-/*********************************
+ * current
  * season
  ********************************/
 .win_counts div{
 	display: inline-block;
+}
+
+.win_count{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.win_count .victory{
+	width: 100px;
+	font-weight:bold;
+	font-size: 14pt;
+}
+
+.win_count .victory span{
+	width: 100px;
+	margin: 0px 3px;
+	font-size: 12pt;
+}
+
+.win_count .victory{
+	width: 100px;
+}
+
+.win_count .count{
+	width: 200px;
+}
+
+.win_count .count p{
+	display: inline-block;
+	font-weight:bold;
+}
+
+.win_count .count p:nth-child(1){
+	text-align: right;
+	font-size: 10pt;
+	margin-right: 10px;
+	width: 70px;
+}
+
+.win_count .count p:nth-child(2){
+	text-align: right;
+	font-size: 12pt;
+	margin-right: 5px;
+	width: 30px;
+}
+
+.win_count .count p:nth-child(3){
+	text-align: left;
+	font-weight:bold;
+	font-size: 10pt;
+	width: 70px;
 }
 
 /*********************************

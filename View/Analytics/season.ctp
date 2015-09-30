@@ -33,21 +33,48 @@
 				$wetRank1Rate = $analytics->calcRate($wetCount["recode_count"], $wetCount["rank1_count"]);
 				$wetRank2Rate = $analytics->calcRate($wetCount["recode_count"], $wetCount["rank2_count"]);
 		?>
-			<div>
-				優勝<?php echo $victoryCount; ?>回
-			</div>
-			<div>
-				<p><?php echo $allCount["rank1_count"]; ?> (<?php echo $allRank1Rate; ?>)</p>
-				<p><?php echo $allCount["rank2_count"]; ?> (<?php echo $allRank2Rate; ?>)</p>
-			</div>
-			<div>
-				<p><?php echo $normalCount["rank1_count"]; ?> (<?php echo $normalRank1Rate; ?>)</p>
-				<p><?php echo $normalCount["rank2_count"]; ?> (<?php echo $normalRank2Rate; ?>)</p>
-			</div>
-			<div>
-				<p><?php echo $wetCount["rank1_count"]; ?> (<?php echo $wetRank1Rate; ?>)</p>
-				<p><?php echo $wetCount["rank2_count"]; ?> (<?php echo $wetRank2Rate; ?>)</p>
-			</div>
+
+			<table class="win_count">
+				<tr>
+					<td class="victory" rowspan=2>
+						<span>優勝</span>
+						<?php echo $victoryCount; ?>
+						<span>回</span>
+					</td>
+					<td class="count">
+						<p>単勝</p>
+						<p><?php echo $allCount["rank1_count"]; ?></p>
+						<p>(<?php echo $allRank1Rate . "%"; ?>)</p>
+					</td>
+					<td class="count">
+						<p>単勝(良)</p>
+						<p><?php echo $normalCount["rank1_count"]; ?></p>
+						<p>(<?php echo $normalRank1Rate . "%"; ?>)</p>
+					</td>
+					<td class="count">
+						<p>単勝(湿)</p>
+						<p><?php echo $wetCount["rank1_count"]; ?></p>
+						<p>(<?php echo $wetRank1Rate . "%"; ?>)</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="count">
+						<p>２連対</p>
+						<p><?php echo $allCount["rank2_count"]; ?></p>
+						<p>(<?php echo $allRank2Rate . "%"; ?>)</p>
+					</td>
+					<td class="count">
+						<p>２連対(良)</p>
+						<p><?php echo $normalCount["rank2_count"]; ?></p>
+						<p>(<?php echo $normalRank2Rate . "%"; ?>)</p>
+					</td>
+					<td class="count">
+						<p>２連対(湿)</p>
+						<p><?php echo $wetCount["rank2_count"]; ?></p>
+						<p>(<?php echo $wetRank2Rate . "%"; ?>)</p>
+					</td>
+				</tr>
+			</table>
 		<?php } ?>
 		</div>
 	<?php } ?>
