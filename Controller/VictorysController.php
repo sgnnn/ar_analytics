@@ -38,7 +38,7 @@ class VictorysController extends AppController {
 		foreach($RSerieses as $RSerieRow){
 			$RSeries = $RSerieRow["R_SERIES"];
 			$Races = $this->RRace->findRaceVictorys($RSeries["SE_CD"]);
-$this->log($RSeries);
+
 			foreach($Races as $RaceRow){
 				$Race = $RaceRow["R_RACE"];
 
