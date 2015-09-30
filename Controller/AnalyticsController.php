@@ -16,7 +16,8 @@ class AnalyticsController extends AppController {
 						"LatestRace",
 						"LatestTryrun",
 						"LatestCalc",
-						"Difftime"
+						"Difftime",
+						"PerformanceLevel"
 	);
 
 	public $seCd;
@@ -62,9 +63,22 @@ class AnalyticsController extends AppController {
 		$orders = array("recode_number");
 		$latestAnalyticsCalcs = $this->LatestCalc->find('all', array("conditions" => $calcConditions, "order" => $orders));
 
+		$performanceLevels = array();
+		foreach($this->RRecodes as $RRecodeRow){
+			$rRecode = $RRecodeRow["R_RECODE"];
+
+			$performanceConditions = array(
+				"racer_code" => $rRecode["RR_CD"]
+			);
+
+			$performanceLevel = $this->PerformanceLevel->find('first', array("conditions" => $performanceConditions));
+			array_push($performanceLevels, $performanceLevel);
+		}
+
 		$this->set("latestAnalyticsCalcs", $latestAnalyticsCalcs);
 		$this->set("latestRace", $latestRace);
 		$this->set("latestTryruns", $latestTryruns);
+		$this->set("performanceLevels", $performanceLevels);
 	}
 
 	public function information() {

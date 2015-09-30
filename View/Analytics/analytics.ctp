@@ -31,6 +31,15 @@
 				break;
 			}
 		}
+
+		$isLevel = false;
+		foreach($performanceLevels as $performanceLevelRow){
+			$performanceLevel = $performanceLevelRow["PerformanceLevel"];
+			if($performanceLevel["racer_code"] == $RRecode["RR_CD"]){
+				$isLevel = true;
+				break;
+			}
+		}
 ?>
 		<div class="analytics_recodes analytics_version">
 			<p class="waku_color_<?php echo $RRecode["WAKU_NUM"]; ?>"><?php echo $RRecode["WAKU_NUM"]; ?></p>
@@ -40,6 +49,15 @@
 			<p><?php echo "<span class='comment'>試走</span>" . $tryrunTime; ?></p>
 			<p><?php echo "<span class='comment'>想定タイム</span>" . $agariTime; ?></p>
 		</div>
+
+		<?php if($isLevel){ ?>
+		<div>
+			<p><?php echo $performanceLevel["race_count"]; ?></p>
+			<p><?php echo $performanceLevel["rank1_count"]. " (" . $performanceLevel["rank1_rate"] . "%)"; ?></p>
+			<p><?php echo $performanceLevel["rank2_count"]. " (" . $performanceLevel["rank2_rate"] . "%)"; ?></p>
+			<p><?php echo $performanceLevel["rank3_count"]. " (" . $performanceLevel["rank3_rate"] . "%)"; ?></p>
+		</div>
+		<?php } ?>
 	<?php } ?>
 </div>
 
