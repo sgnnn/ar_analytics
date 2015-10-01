@@ -177,12 +177,32 @@ class AnalyticsController extends AppController {
 		}
 	}
 
-	public function grade() {
-		$this->execShare("grade");
+	public function before() {
+		$this->execShare("before");
 
 		if(!$this->exec)
 			return;
 
+		$beforeFrom = $this->RRacedate->findBeforeFrom();
+		$beforeTo = $this->RRacedate->findBeforeTo();
+
+		foreach($this->RRecodes as $RRecodeRow){
+			$RRecode = $RRecodeRow["R_RECODE"];
+
+			$winCountAll = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $beforeFrom, $beforeTo, "all");
+			$winCountNormal = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $beforeFrom, $beforeTo, "normal");
+			$winCountWet = $this->RRecode->findCurrentWinCount($RRecode["RR_CD"], $beforeFrom, $beforeTo, "wet");
+			$victoryCount = $this->RRace->findCurrentVictoryCount($RRecode["RR_CD"], $beforeFrom, $beforeTo);
+
+			$currentCounts = array(
+					"victoryCount" => $victoryCount,
+					"allCount" => $winCountAll,
+					"normalCount" => $winCountNormal,
+					"wetCount" => $winCountWet
+			);
+
+			$this->set("currentCounts_" . $RRecode["WAKU_NUM"],  $currentCounts);
+		}
 	}
 
 	function execShare($action){

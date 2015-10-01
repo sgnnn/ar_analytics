@@ -19,7 +19,7 @@ $(document).ready(function(){
 	$("#recent").click(function()	 	{analyticsLocation('recent', param);});
 	$("#current").click(function() 		{analyticsLocation('current', param);});
 	$("#season").click(function() 		{analyticsLocation('season', param);});
-	$("#grade").click(function() 		{analyticsLocation('grade', param);});
+	$("#before").click(function() 		{analyticsLocation('before', param);});
 
 	var hovers =	"  .full" +
 					", .divide" +

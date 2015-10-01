@@ -23,10 +23,10 @@
 		<td><p id="current" class="divide">今期</p></td>
 	</tr>
 	<tr>
-		<td><p id="season" class="divide">今シーズン</p></td>
+		<td><p id="before" class="divide">前期</p></td>
 	</tr>
 	<tr>
-		<td><p id="grade" class="divide">グレード比較</p></td>
+		<td><p id="season" class="divide">今シーズン</p></td>
 	</tr>
 </table>
 

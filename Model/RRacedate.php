@@ -32,4 +32,24 @@ class RRacedate extends AppModel {
     	else
     		return "";
     }
+
+    public function findBeforeFrom(){
+    	$sql = "select * from R_RACEDATE where RCDT_CD = '05'";
+    	$result = $this->query($sql);
+
+    	if(count($result) > 0)
+    		return $result[0]["R_RACEDATE"]["RCDT_YMD"];
+    	else
+    		return "";
+    }
+
+    public function findBeforeTo(){
+    	$sql = "select * from R_RACEDATE where RCDT_CD = '06'";
+    	$result = $this->query($sql);
+
+    	if(count($result) > 0)
+    		return $result[0]["R_RACEDATE"]["RCDT_YMD"];
+    	else
+    		return "";
+    }
 }
