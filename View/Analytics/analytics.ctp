@@ -46,6 +46,7 @@
 			<p><span class="comment">ハンデ</span><?php echo $RRecode["HANDE"]; ?></p>
 			<p class="<?php echo substr($RRacer["RANK_NEW"], 0, 1); ?>_class"><?php echo $RRacer["RANK_NEW"]; ?></p>
 			<p><?php echo $RRacer["RR_NM"]; ?></p>
+			<p class="lg_color_<?php echo $RRacer["LG_CD"]; ?>"><?php echo $codeConvert->convertLgName($RRacer["LG_CD"]); ?></p>
 			<p><?php echo "<span class='comment'>試走</span>" . $tryrunTime; ?></p>
 			<p><?php echo "<span class='comment'>想定タイム</span>" . $agariTime; ?></p>
 		</div>
