@@ -20,9 +20,15 @@ class RankingsController extends AppController {
 		else
 			$racerRank = "all";
 
+		if(isset($this->params['url']["period"]))
+			$period = $this->params['url']["period"];
+		else
+			$period = "season";
+
 		$this->set("display",$this->display);
 		$this->set("category", $category);
 		$this->set("racerRank", $racerRank);
+		$this->set("period", $period);
 	}
 
 	/****************************************************
