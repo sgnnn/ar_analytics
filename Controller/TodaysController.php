@@ -22,6 +22,9 @@ class TodaysController extends AppController {
 			$seCds[$BNextday["B_NEXTDAY"]["LG_CD"] -1] = $BNextday["B_NEXTDAY"]["SE_CD"];
 		}
 
+		//$cmd='curl http://localhost/ar_analytics/Rankings/exec';
+		//Debugger::dump(exec($cmd));
+
 		$this->set("today", $today);
 		$this->set("lgs", array("伊勢崎","川口","船橋","浜松","山陽","飯塚"));
 		$this->set("selectLgs", $selectLgs);

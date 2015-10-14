@@ -33,6 +33,9 @@ class AnalyticsController extends AppController {
 
 		$today = $this->RRacedate->findToday();
 
+		//$cmd='curl http://localhost/ar_analytics/Rankings/exec';
+		//Debugger::dump(exec($cmd));
+
 		// 一時的な回避
 		if(date("Ymd") >= $today and date("H") >= 10)
 			$this->updateLatests();
