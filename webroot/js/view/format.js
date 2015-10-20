@@ -15,7 +15,7 @@ $(document).ready(function(){
 	});
 
 	$(".logo").click(function() {
-		window.location.href = './Homes';
+		window.location.href = $('#url').val() + 'Homes';
 	});
 
 	var hovers = 	"#entry," +

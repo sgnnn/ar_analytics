@@ -8,8 +8,8 @@
 </div>
 
 <div class="category_select">
-	<a <?php if(!$gradeOnly){ ?> class="select" <?php } ?> href="./RecentRaces">すべて</a>
-	<a <?php if($gradeOnly){ ?> class="select" <?php } ?>  href="./RecentRaces?gradeOnly=true">Gレースのみ</a>
+	<a <?php if(!$gradeOnly){ ?> class="select" <?php } ?> href="<?php echo $this->Html->url('/', true);?>RecentRaces">すべて</a>
+	<a <?php if($gradeOnly){ ?> class="select" <?php } ?>  href="<?php echo $this->Html->url('/', true);?>RecentRaces?gradeOnly=true">Gレースのみ</a>
 </div>
 
 <div class="race_selects">

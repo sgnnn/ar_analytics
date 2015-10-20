@@ -32,5 +32,5 @@ function execLocation(){
 	var racerRank = $("#racerRank").val();
 	var period    = $("#period").val();
 	var param = "?category=" + category + "&racerRank=" + racerRank + "&period=" + period;
-	window.location.href = './Rankings' + param;
+	window.location.href = $('#url').val() + 'Rankings' + param;
 }

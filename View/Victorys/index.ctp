@@ -3,8 +3,8 @@
 </div>
 
 <div class="category_select">
-	<a <?php if(!$gradeOnly){ ?> class="select" <?php } ?> href="./Victorys">すべて</a>
-	<a <?php if($gradeOnly){ ?> class="select" <?php } ?>  href="./Victorys?gradeOnly=true">Gレースのみ</a>
+	<a <?php if(!$gradeOnly){ ?> class="select" <?php } ?> href="<?php echo $this->Html->url('/', true);?>Victorys">すべて</a>
+	<a <?php if($gradeOnly){ ?> class="select" <?php } ?>  href="<?php echo $this->Html->url('/', true);?>Victorys?gradeOnly=true">Gレースのみ</a>
 </div>
 
 <div class="victory_datas">

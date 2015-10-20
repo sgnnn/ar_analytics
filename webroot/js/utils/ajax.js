@@ -1,6 +1,6 @@
 function execGet(action, datas, arg){
 	$base = {
-        url: action,
+        url: $('#url').val() + action,
         type: "GET",
         dataType: "json",
         data: datas,

@@ -199,5 +199,6 @@
 		</section>
 	</div>
 
+	<input type="hidden" id="url" value="<?php echo $this->Html->url('/', true);?>">
 </body>
 </html>
