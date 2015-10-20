@@ -65,10 +65,17 @@
 			<div class="logo_sub"><span>オートレース アナリティクス</span></div>
 			-->
 
-			<div class="submits">
-				<!--<a id="entry" href="#inline-entry">新規登録</a>-->
-				<a id="login" href="#inline-login">ログイン</a>
-			</div>
+			<?php if($auth->loggedIn()){ ?>
+				<div class="submits">
+					<?php echo h($auth->user('username')); ?>
+					<a id="logout" href="<?php echo $this->Html->url('/Users/logout', true);?>">ログアウト</a>
+				</div>
+			<?php } else{ ?>
+				<div class="submits">
+					<!--<a id="entry" href="">新規登録</a>-->
+					<a id="login" href="<?php echo $this->Html->url('/Users/login', true);?>">ログイン</a>
+				</div>
+			<?php }?>
 		</div>
 
 		<div class="collapse navbar-collapse target">
