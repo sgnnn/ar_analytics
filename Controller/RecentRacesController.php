@@ -6,6 +6,11 @@ class RecentRacesController extends AppController {
 
 	public $uses = array("RSeries", "RRace");
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('findRacesAnd3rdRacers', 'findRacesMore');
+	}
+
 	public function index() {
 		$this->layout = "Normal";
 		$this->display = "RecentRaces";

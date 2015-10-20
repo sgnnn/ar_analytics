@@ -5,9 +5,9 @@
  * This file is application-wide controller file. You can put all
  * application-wide controller-related methods here.
  *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
+ * @link		  http://cakephp.org CakePHP(tm) Project
+ * @package	   app.Controller
+ * @since		 CakePHP(tm) v 0.2.9
  */
 
 App::uses('Controller', 'Controller');
@@ -22,4 +22,31 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	public $components = array(
+		//'Flash',
+		'Auth' => array(
+				'loginRedirect' => array(
+						'controller' => 'homes',
+						'action' => 'index'
+				),
+				'logoutRedirect' => array(
+						'controller' => 'homes',
+						'action' => 'index',
+						'home'
+				),
+				'authenticate' => array(
+					'Form' => array(
+						'passwordHasher' => 'Blowfish'
+					)
+		)
+
+		)
+	);
+
+	public function beforeFilter() {
+		$this->Auth->allow('index');
+	}
+
+
 }

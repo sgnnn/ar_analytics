@@ -7,6 +7,11 @@ class VictorysController extends AppController {
 
 	public $uses = array("RSeries", "RRace", "RRacer");
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('findRacesMore');
+	}
+
 	public function index() {
 		$this->layout = "Normal";
 		$this->display = "Victorys";

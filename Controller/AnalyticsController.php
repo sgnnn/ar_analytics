@@ -25,6 +25,11 @@ class AnalyticsController extends AppController {
 	public $rcNum;
 	public $exec = true;
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('analytics', 'information', 'recent', 'current', 'season', 'before');
+	}
+
 	public function analytics() {
 		$this->execShare("analytics");
 

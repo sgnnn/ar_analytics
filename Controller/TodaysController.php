@@ -6,6 +6,11 @@ class TodaysController extends AppController {
 
 	public $uses = array("RRacedate", "BNextday", "RSeries", "RRace", "RRecode");
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('selectSeries', 'selectRaceAndRecodes');
+	}
+
 	public function index() {
 		$this->layout = "Normal";
 		$this->display = "Todays";

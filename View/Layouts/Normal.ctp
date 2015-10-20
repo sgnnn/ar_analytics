@@ -73,25 +73,23 @@
 
 		<div class="collapse navbar-collapse target">
 			<ul class="nav navbar-nav navbar-left">
-				<?php $action = isset($action) ? "../" : ""; ?>
-
 				<?php $classActive = (isset($display) and $display === "Homes" or !isset($display)) ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Homes">ホーム</a></li>
+				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/Homes/', true);?>">ホーム</a></li>
 
 				<?php $classActive = (isset($display) and ($display === "Todays" or $display === "Analytics")) ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Todays">本日の開催</a></li>
+				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/Todays/', true);?>">本日の開催</a></li>
 
 				<?php $classActive = (isset($display) and $display === "RecentRaces") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>RecentRaces">過去レース</a></li>
+				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/RecentRaces/', true);?>">過去レース</a></li>
 
 				<?php $classActive = (isset($display) and $display === "Rankings") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Rankings">ランキング</a></li>
+				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/Rankings/', true);?>">ランキング</a></li>
 
 				<?php $classActive = (isset($display) and $display === "Victorys") ? 'class="active"' : ""; ?>
-				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>Victorys">優勝者</a></li>
+				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/Victorys/', true);?>">優勝者</a></li>
 
 				<?php $classActive = (isset($display) and $display === "LotomotoMinis") ? 'class="active"' : ""; ?>
-<!--				<li <?php echo $classActive; ?>><a href="./<?php echo $action; ?>LotomotoMinis">モトロトmini</a></li>
+<!--				<li <?php echo $classActive; ?>><a href="<?php echo $this->Html->url('/LotomotoMinis/', true);?>">モトロトmini</a></li>
 -->
 			</ul>
 		</div>
