@@ -43,6 +43,7 @@
 						<div class="recent_recodes">
 							<p><?php echo $codeConvert->convertDateMdString($race["RCDT_YMD"]); ?></p>
 							<p><?php echo $codeConvert->convertRunwayName($race["RUNWAY_K"]) . " (" . $race["RUNWAY_HEAT"] . "℃)"; ?></p>
+							<p><?php echo $race["RC_NUM"] . "R"; ?></p>
 							<p class="waku_color_<?php echo $recode["WAKU_NUM"]; ?>"><?php echo $recode["WAKU_NUM"]; ?></p>
 							<p><?php echo $recode["HANDE"] . " (" . $recode["SAME_HANDE_CNT"]. ")"; ?></p>
 							<p <?php if(!empty($recode["RC_RANK"]) and $recode["RC_RANK"] <= 3){echo "class='rc_rank_" . $recode['RC_RANK'] . "'";} else{echo "class='rc_rank_0'";} ?> >
