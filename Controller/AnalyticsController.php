@@ -41,8 +41,10 @@ class AnalyticsController extends AppController {
 		//$cmd='curl http://localhost/ar_analytics/Rankings/exec';
 		//Debugger::dump(exec($cmd));
 
+		$update = isset($this->params['url']["update"]) ? $this->params['url']["update"] : "";
+
 		// 一時的な回避
-		if(date("Ymd") >= $today and date("H") >= 10)
+		if($update and date("Ymd") >= $today and date("H") >= 10)
 			$this->updateLatests();
 
 		$conditions = array(
@@ -265,6 +267,7 @@ class AnalyticsController extends AppController {
 			"race_number" => $this->rcNum
 		);
 
+		/*
 		if($this->rcNum > 1){
 			$nextConditions = array(
 				"series_code" => $this->seCd,
@@ -278,6 +281,7 @@ class AnalyticsController extends AppController {
 			if(!$latestRace["LatestRace"]["tryrun_end"])
 				return;
 		}
+		*/
 
 		$latestRace = $this->LatestRace->find('first', array("conditions" => $conditions));
 

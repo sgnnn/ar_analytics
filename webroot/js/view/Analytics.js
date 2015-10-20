@@ -13,8 +13,9 @@ $(document).ready(function(){
 	var seDay = $("#seDay").val();
 	var rcNum = $("#rcNum").val();
 	var param = "?seCd=" + seCd + "&seDay=" + seDay + "&rcNum=" + rcNum;
+	var param_analytics = "&update=true";
 
-	$("#analytics").click(function() 	{analyticsLocation('analytics', param);});
+	$("#analytics").click(function() 	{analyticsLocation('analytics', param + param_analytics);});
 	$("#information").click(function() 	{analyticsLocation('information', param);});
 	$("#recent").click(function()	 	{analyticsLocation('recent', param);});
 	$("#current").click(function() 		{analyticsLocation('current', param);});
