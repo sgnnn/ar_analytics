@@ -68,7 +68,7 @@
 			<?php if($auth->loggedIn()){ ?>
 				<div class="submits">
 					<?php echo h($auth->user('username')); ?>
-					<a id="logout" href="<?php echo $this->Html->url('/Users/logout', true);?>">ログアウト</a>
+					<a id="logout" href="#inline-logout">ログアウト</a>
 				</div>
 			<?php } else{ ?>
 				<div class="submits">
@@ -106,6 +106,7 @@
 		<?php echo $content_for_layout; ?>
 	</div>
 
+	<!--
 	<div class="colorbox_init">
 		<section id="inline-entry">
 			<div class="btn_close"><a href="#">×</a></div>
@@ -115,25 +116,6 @@
 					<p>メールアドレス</p>
 					<p class="mail"><input type="email" name="mail" /></p>
 					<p class="submit"><input type="submit" value="新規登録" /></p>
-				</form>
-			</div>
-		</section>
-	</div>
-
-	<div class="colorbox_init">
-		<section id="inline-login">
-			<div class="btn_close"><a href="#">×</a></div>
-			<div id="form">
-				<p class="form-title">AutoRace Analytics ログイン</p>
-				<form action="post">
-					<div class="post_input">
-						<p>ユーザー名 または メールアドレス</p>
-						<p class="mail"><input type="email" name="mail" /></p>
-						<p>パスワード</p>
-						<p class="pass"><input type="password" name="pass" /></p>
-						<p class="check"><input type="checkbox" name="checkbox" />パスワードを保存</p>
-					</div>
-					<p class="submit"><input type="submit" value="ログイン" /></p>
 				</form>
 			</div>
 		</section>
@@ -157,20 +139,27 @@
 			</div>
 		</section>
 	</div>
+	-->
 
-	<div class="colorbox_init">
-		<section id="inline-logout">
-			<div class="btn_close"><a href="#">×</a></div>
-			<div id="form">
-				<p class="form-title">AutoRace Analytics ログアウト</p>
-				<form action="post">
-					<p class="submit"><input type="submit" value="はい" /></p>
-					<p class="submit"><input type="submit" value="いいえ" /></p>
-				</form>
-			</div>
-		</section>
-	</div>
+	<?php if($auth->loggedIn()){ ?>
+		<div class="colorbox_init">
+			<section id="inline-logout">
+				<div class="btn_close"><a href="#">×</a></div>
+				<div id="form">
+					<p class="form-title">AutoRace Analytics ログアウト</p>
+					<div class="logout_message">
+						ログアウトします。よろしいですか？
+					</div>
+					<form action="<?php echo $this->Html->url('/Users/logout', true);?>">
+						<p class="submit_logout"><input id="logout_yes" type="submit" value="はい" /></p>
+						<p class="submit_logout"><input id="logout_no" type="submit" value="いいえ" /></p>
+					</form>
+				</div>
+			</section>
+		</div>
+	<?php } ?>
 
+	<!--
 	<div class="colorbox_init">
 		<section id="inline-analytics">
 			<div class="btn_close"><a href="#">×</a></div>
@@ -205,6 +194,7 @@
 			<div class="btn_close"><a href="#">×</a></div>
 		</section>
 	</div>
+	-->
 
 	<input type="hidden" id="url" value="<?php echo $this->Html->url('/', true);?>">
 </body>

@@ -18,21 +18,20 @@ $(document).ready(function(){
 		window.location.href = $('#url').val() + 'Homes';
 	});
 
-	var hovers = 	"#entry," +
-					"#login," +
-					"#update," +
-					"#logout";
+	$("#logout_no").click(function() {
+		parent.$.fn.colorbox.close();
+		return false;
+	});
+
+	var hovers = 	"#logout";
 
 	$(hovers).hover(function() {
 		$(this).stop().animate({ opacity: "0.5" }, 200);
 	},function() {
 		$(this).stop().animate({ opacity: "1.0" }, 1000);
 	});
-/*
-	var colorboxs = 	"#entry," +
-						"#login," +
-						"#update," +
-						"#logout";
+
+	var colorboxs = 	"#logout";
 
 	$(colorboxs).colorbox({
 		inline:true,
@@ -40,5 +39,4 @@ $(document).ready(function(){
 		maxHeight:"90%",
 		opacity: 0.7
 	});
-*/
 });
