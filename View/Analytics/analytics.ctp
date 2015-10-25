@@ -18,6 +18,7 @@
 		$agariTime = "";
 
 		$difftime = $difftimes[$i];
+		$bAverecode03 = $bAverecode03s[$i];
 
 		foreach($latestTryruns as $latestTryrunRow){
 			$latestTryrun = $latestTryrunRow["LatestTryrun"];
@@ -58,18 +59,18 @@
 			<td>
 				<div>
 					<p>試走T</p>
-					<p><?php echo "-.--";?></p>
+					<p><?php echo $analytics->getBAverecode03Value($bAverecode03, 'SISOU_TIME_AVE');?></p>
 				</div>
 				<div>
 					<p>競走T</p>
 					<p>
-						<?php echo "-.---";?>
+						<?php echo $analytics->getBAverecode03Value($bAverecode03, 'AGARI_TIME_AVE');?>
 						(<?php echo $difftime;?>)
 					</p>
 				</div>
 				<div>
 					<p>スタート</p>
-					<p><?php echo "--";?></p>
+					<p><?php echo $analytics->getBAverecode03Value($bAverecode03, 'ST_AVE');?></p>
 				</div>
 			</td>
 
@@ -78,26 +79,26 @@
 					<tr>
 						<td class="race_count" rowspan=3>
 							<p>直近60日間</p>
-							<?php echo "--"; ?>
+							<?php echo $analytics->getBAverecode03Value($bAverecode03, 'RC_CNT'); ?>
 							<span>走</span>
 						</td>
 						<td class="count">
 							<p>単勝</p>
-							<p><?php echo "-"; ?></p>
+							<p><?php echo $analytics->getBAverecode03Value($bAverecode03, 'RC_RANK1_CNT'); ?></p>
 							<p>(<?php echo "--.-" . "%"; ?>)</p>
 						</td>
 					</tr>
 					<tr>
 						<td class="count">
 							<p>2連対</p>
-							<p><?php echo "-"; ?></p>
+							<p><?php echo $analytics->getBAverecode03Value($bAverecode03, 'RC_RANK2_CNT'); ?></p>
 							<p>(<?php echo "--.-" . "%"; ?>)</p>
 						</td>
 					</tr>
 					<tr>
 						<td class="count">
 							<p>3連対</p>
-							<p><?php echo "-"; ?></p>
+							<p><?php echo $analytics->getBAverecode03Value($bAverecode03, 'RC_RANK3_CNT'); ?></p>
 							<p>(<?php echo "--.-" . "%"; ?>)</p>
 						</td>
 					</tr>

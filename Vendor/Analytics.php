@@ -90,5 +90,12 @@ class Analytics{
 
 		return 0;
 	}
+
+	public function getBAverecode03Value($bAverecode03, $column){
+		if(empty($bAverecode03))
+			return "--";
+
+		return $bAverecode03[$column];
+	}
 }
 ?>

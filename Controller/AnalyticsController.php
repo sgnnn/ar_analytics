@@ -17,7 +17,8 @@ class AnalyticsController extends AppController {
 						"LatestTryrun",
 						"LatestCalc",
 						"Difftime",
-						"PerformanceLevel"
+						"PerformanceLevel",
+						"BAverecode"
 	);
 
 	public $seCd;
@@ -86,6 +87,7 @@ class AnalyticsController extends AppController {
 		}
 
 		$difftimes = array();
+		$bAverecode03s = array();
 		foreach($this->RRecodes as $rRecodeRow){
 			$rRecode = $rRecodeRow["R_RECODE"];
 			$difftime = $this->Difftime->find('first', array("conditions" => array("racer_code" => $rRecode["RR_CD"])));
@@ -93,6 +95,13 @@ class AnalyticsController extends AppController {
 				array_push($difftimes, $difftime["Difftime"]["difftime"]);
 			else
 				array_push($difftimes, "");
+
+			$bAverecode03 = $this->BAverecode->findAveTypeCd03($rRecode["RR_CD"]);
+
+			if(count($bAverecode03) > 0)
+				array_push($bAverecode03s, $bAverecode03);
+			else
+				array_push($bAverecode03s, array());
 		}
 
 		$this->set("latestAnalyticsCalcs", $latestAnalyticsCalcs);
@@ -100,6 +109,7 @@ class AnalyticsController extends AppController {
 		$this->set("latestTryruns", $latestTryruns);
 		$this->set("performanceLevels", $performanceLevels);
 		$this->set("difftimes", $difftimes);
+		$this->set("bAverecode03s", $bAverecode03s);
 	}
 
 	public function information() {
