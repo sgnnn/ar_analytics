@@ -209,7 +209,7 @@
 	Configure::write('Session', array(
 	    'defaults' => 'php',
 	    'cookie' => 'my_app',
-	    'timeout' => 43200 //3 days
+	    'timeout' => 43200 //30 days
 	));
 
 /**
