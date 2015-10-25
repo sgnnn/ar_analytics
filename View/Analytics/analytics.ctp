@@ -9,12 +9,15 @@
 
 <div class="analytics_frame">
 <?php
+	$i = 0;
 	foreach($RRecodes as $RRecodeRow){
 		$RRecode = $RRecodeRow["R_RECODE"];
 		$RRacer = $RRecodeRow["R_RACER"];
 
 		$tryrunTime = "";
 		$agariTime = "";
+
+		$difftime = $difftimes[$i];
 
 		foreach($latestTryruns as $latestTryrunRow){
 			$latestTryrun = $latestTryrunRow["LatestTryrun"];
@@ -51,37 +54,93 @@
 			<p><?php echo "<span class='comment'>想定タイム</span>" . $agariTime; ?></p>
 		</div>
 
-		<?php if($isLevel){ ?>
-		<table class="level_count">
-			<tr>
-				<td class="race_count" rowspan=3>
-					<p>同レベルレース</p>
-					<?php echo $performanceLevel["race_count"]; ?>
-					<span>走</span>
-				</td>
-				<td class="count">
-					<p>単勝</p>
-					<p><?php echo $performanceLevel["rank1_count"]; ?></p>
-					<p>(<?php echo $performanceLevel["rank1_rate"] . "%"; ?>)</p>
-				</td>
-			</tr>
-			<tr>
-				<td class="count">
-					<p>2連対</p>
-					<p><?php echo $performanceLevel["rank2_count"]; ?></p>
-					<p>(<?php echo $performanceLevel["rank2_rate"] . "%"; ?>)</p>
-				</td>
-			</tr>
-			<tr>
-				<td class="count">
-					<p>3連対</p>
-					<p><?php echo $performanceLevel["rank3_count"]; ?></p>
-					<p>(<?php echo $performanceLevel["rank3_rate"] . "%"; ?>)</p>
-				</td>
-			</tr>
-		</table>
-		<?php } ?>
-	<?php } ?>
+		<table class="analytics_field"><tr>
+			<td>
+				<div>
+					<p>試走T</p>
+					<p><?php echo "-.--";?></p>
+				</div>
+				<div>
+					<p>競走T</p>
+					<p>
+						<?php echo "-.---";?>
+						(<?php echo $difftime;?>)
+					</p>
+				</div>
+				<div>
+					<p>スタート</p>
+					<p><?php echo "--";?></p>
+				</div>
+			</td>
+
+			<td>
+				<table class="level_count">
+					<tr>
+						<td class="race_count" rowspan=3>
+							<p>直近60日間</p>
+							<?php echo "--"; ?>
+							<span>走</span>
+						</td>
+						<td class="count">
+							<p>単勝</p>
+							<p><?php echo "-"; ?></p>
+							<p>(<?php echo "--.-" . "%"; ?>)</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="count">
+							<p>2連対</p>
+							<p><?php echo "-"; ?></p>
+							<p>(<?php echo "--.-" . "%"; ?>)</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="count">
+							<p>3連対</p>
+							<p><?php echo "-"; ?></p>
+							<p>(<?php echo "--.-" . "%"; ?>)</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+
+			<?php if($isLevel){ ?>
+			<td>
+			<table class="level_count">
+				<tr>
+					<td class="race_count" rowspan=3>
+						<p>同レベルレース</p>
+						<?php echo $performanceLevel["race_count"]; ?>
+						<span>走</span>
+					</td>
+					<td class="count">
+						<p>単勝</p>
+						<p><?php echo $performanceLevel["rank1_count"]; ?></p>
+						<p>(<?php echo $performanceLevel["rank1_rate"] . "%"; ?>)</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="count">
+						<p>2連対</p>
+						<p><?php echo $performanceLevel["rank2_count"]; ?></p>
+						<p>(<?php echo $performanceLevel["rank2_rate"] . "%"; ?>)</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="count">
+						<p>3連対</p>
+						<p><?php echo $performanceLevel["rank3_count"]; ?></p>
+						<p>(<?php echo $performanceLevel["rank3_rate"] . "%"; ?>)</p>
+					</td>
+				</tr>
+			</table>
+			</td>
+			<?php } ?>
+		</tr></table>
+	<?php
+		$i++;
+		}
+	?>
 </div>
 
 

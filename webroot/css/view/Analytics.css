@@ -183,7 +183,6 @@
 }
 
 .level_count{
-	margin: 10px 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -192,6 +191,7 @@
 	width: 100px;
 	font-weight:bold;
 	font-size: 14pt;
+	text-align: right;
 }
 
 .level_count .race_count p{
@@ -219,7 +219,7 @@
 	text-align: right;
 	font-size: 10pt;
 	margin-right: 10px;
-	width: 70px;
+	width: 50px;
 }
 
 .level_count .count p:nth-child(2){
@@ -234,6 +234,52 @@
 	font-weight:bold;
 	font-size: 10pt;
 	width: 70px;
+}
+
+.analytics_field{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+
+	margin: 10px 0px;
+
+	background-color: #f2f9fe;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f9fe), to(#d6f0fd));
+	background-image: -webkit-linear-gradient(top, #f2f9fe, #d6f0fd);
+	background-image: -moz-linear-gradient(top, #f2f9fe, #d6f0fd);
+	background-image: -ms-linear-gradient(top, #f2f9fe, #d6f0fd);
+	background-image: -o-linear-gradient(top, #f2f9fe, #d6f0fd);
+	background-image: linear-gradient(to bottom, #f2f9fe, #d6f0fd);
+	font-weight:bold;filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f2f9fe, endColorstr=#d6f0fd);
+}
+
+.analytics_field td{
+	padding: 2px 0px;
+}
+
+.analytics_field td:nth-child(1){
+	font-weight:bold;
+}
+
+.analytics_field td:nth-child(1) div p{
+	display: inline-block;
+	text-align: left;
+}
+
+.analytics_field td:nth-child(1) div p:nth-child(1){
+	width: 70px;
+}
+
+.analytics_field td:nth-child(1) div p:nth-child(2){
+	width: 110px;
+}
+
+.analytics_field td:nth-child(2){
+	width: 300px;
+}
+
+.analytics_field td:nth-child(3){
+	width: 300px;
 }
 
 /*********************************

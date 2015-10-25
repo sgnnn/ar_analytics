@@ -85,10 +85,21 @@ class AnalyticsController extends AppController {
 			array_push($performanceLevels, $performanceLevel);
 		}
 
+		$difftimes = array();
+		foreach($this->RRecodes as $rRecodeRow){
+			$rRecode = $rRecodeRow["R_RECODE"];
+			$difftime = $this->Difftime->find('first', array("conditions" => array("racer_code" => $rRecode["RR_CD"])));
+			if(count($difftime) > 0)
+				array_push($difftimes, $difftime["Difftime"]["difftime"]);
+			else
+				array_push($difftimes, "");
+		}
+
 		$this->set("latestAnalyticsCalcs", $latestAnalyticsCalcs);
 		$this->set("latestRace", $latestRace);
 		$this->set("latestTryruns", $latestTryruns);
 		$this->set("performanceLevels", $performanceLevels);
+		$this->set("difftimes", $difftimes);
 	}
 
 	public function information() {
