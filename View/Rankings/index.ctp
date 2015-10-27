@@ -1,3 +1,6 @@
+<?php App::uses('CodeConvert', 'Vendor'); ?>
+<?php $codeConvert = new CodeConvert(); ?>
+
 <input type="hidden" id="category" value="<?php echo $category; ?>" >
 <input type="hidden" id="racerRank" value="<?php echo $racerRank; ?>" >
 <input type="hidden" id="period" value="<?php echo $period; ?>" >
@@ -21,6 +24,37 @@
 	<a <?php if($period === "before") { ?> class="select" <?php } ?> href="javascript:setPeriod('before')">前期</a>
 </div>
 
-<div>
+<div class="rankings">
+	<?php
+		$beforeRankValue = 0;
+		$rank = 0;
+		$index = 1;
+		foreach($rankings as $rankingRow){
+			$ranking = $rankingRow['Ranking'];
 
+			if($category === "count")
+				$currentRankValue = $ranking['win_count'];
+			elseif($category === "rate")
+				$currentRankValue = $ranking['win_rate'];
+			elseif($category === "victory")
+				$currentRankValue = $ranking['victory_count'];
+
+			if($beforeRankValue != $currentRankValue)
+				$rank = $index;
+
+			$beforeRankValue = $currentRankValue;
+			$index ++;
+	?>
+		<div>
+			<p><span>rank</span><?php echo $rank; ?></p>
+			<p><?php echo $ranking['RR_NM']; ?></p>
+			<p><?php echo $ranking['RANK_NEW']; ?></p>
+			<p><?php echo  $codeConvert->convertLgName($ranking['LG_CD']); ?></p>
+			<p><?php echo $ranking['KI']; ?><span>期</span></p>
+			<p><?php echo $ranking['win_count']; ?><span>勝</span></p>
+			<p><?php echo $ranking['win_rate']; ?><span>％</span></p>
+			<p><?php echo $ranking['victory_count']; ?><span>回</span></p>
+		</div>
+
+	<?php } ?>
 </div>

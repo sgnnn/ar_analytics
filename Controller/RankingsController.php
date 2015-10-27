@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class RankingsController extends AppController {
 
-	public $uses = array();
+	public $uses = array("RRecode");
 
 	public function index() {
 		$this->layout = "Normal";
@@ -27,10 +27,17 @@ class RankingsController extends AppController {
 
 		parent::authCheck();
 
+		$rankings = $this->findRankings($category, $racerRank, $period);
+
 		$this->set("display",$this->display);
 		$this->set("category", $category);
 		$this->set("racerRank", $racerRank);
 		$this->set("period", $period);
+		$this->set("rankings", $rankings);
+	}
+
+	private function findRankings($category, $racerRank, $period){
+		return $this->RRecode->findRankings($category, $racerRank, $period);
 	}
 
 	/****************************************************

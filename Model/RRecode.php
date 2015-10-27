@@ -1,5 +1,7 @@
 <?php
 
+App::import('Model','RRacedate');
+
 class RRecode extends AppModel {
 	public $useTable = false;
 
@@ -239,6 +241,71 @@ class RRecode extends AppModel {
     		return $result[0][0];
     	else
     		return array();
+    }
+
+    public function findRankings($category, $racerRank, $period){
+    	$rRacedate = new RRacedate;
+
+    	$params = array();
+
+    	$sql  = "select * from (";
+		$sql .= "select ";
+		$sql .= "  racer.* ";
+		$sql .= " ,count(1) as race_count ";
+		$sql .= " ,sum(if(recode.RC_RANK = 1, 1, 0)) as win_count ";
+		$sql .= " ,round(sum(if(recode.RC_RANK = 1, 1, 0)) / count(1) * 100, 1) as win_rate ";
+		$sql .= " ,sum(if(race.RC_TYPE_K = '08', if(recode.RC_RANK = 1, 1, 0), 0)) as victory_count ";
+		$sql .= "from  R_RECODE recode, R_RACE race, R_RACER racer ";
+		$sql .= "where recode.SE_CD = race.SE_CD ";
+		$sql .= "and   recode.SE_DAY = race.SE_DAY ";
+		$sql .= "and   recode.RC_NUM = race.RC_NUM ";
+		$sql .= "and   recode.RR_CD = racer.RR_CD ";
+		$sql .= "and   racer.RETREAT_K = '0' ";
+		$sql .= "and   race.FAILURE_K = '0' ";
+
+		if($racerRank === 's')
+			$sql .= "and racer.RANK_NEW like 'S%' ";
+		elseif ($racerRank === 'a')
+			$sql .= "and racer.RANK_NEW like 'A%' ";
+		elseif ($racerRank === 'b')
+			$sql .= "and racer.RANK_NEW like 'B%' ";
+
+		if($period === 'season'){
+			$sql .= "and race.RCDT_YMD >= ? and race.RCDT_YMD <= ? ";
+			array_push($params, date('Y') . '0101');
+			array_push($params, date('Y') . '1231');
+		} elseif ($period === 'current'){
+			$sql .= "and race.RCDT_YMD >= ? and race.RCDT_YMD <= ? ";
+			array_push($params, $rRacedate->findCurrentFrom());
+			array_push($params, $rRacedate->findCurrentTo());
+		} elseif ($period === 'before'){
+			$sql .= "and race.RCDT_YMD >= ? and race.RCDT_YMD <= ? ";
+			array_push($params, $rRacedate->findBeforeFrom());
+			array_push($params, $rRacedate->findBeforeTo());
+		}
+
+		$sql .= "group by recode.RR_CD";
+		$sql .= ") Ranking ";
+
+		if($category === 'count'){
+			$sql .= "where win_count > 0 ";
+			$sql .= "order by win_count desc ";
+		} elseif ($category === 'rate'){
+			$sql .= "where win_rate > 0 ";
+			$sql .= "order by win_rate desc ";
+		} elseif ($category === 'victory'){
+			$sql .= "where victory_count > 0 ";
+			$sql .= "order by victory_count desc ";
+		}
+
+		$sql .= "limit 30";
+
+		$result = $this->query($sql, $params);
+
+		if(count($result) > 0)
+			return $result;
+		else
+			return array();
     }
 
     function findHeatCalcPeriod($rrCd, $TryrunTime, $heat, $date, $heatPeriod){

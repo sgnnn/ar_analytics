@@ -122,3 +122,47 @@
 	background-image: linear-gradient(to bottom, #a9a588, #8e865b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a9a588, endColorstr=#8e865b);
 }
 
+.rankings{
+	margin-top: 30px;
+}
+
+.rankings div{
+	margin: 5px 0px;
+}
+
+.rankings p{
+	display: inline-block;
+	font-weight:bold;
+	font-size: 14pt;
+}
+
+.rankings span{
+	font-size: 10pt;
+	margin: 0px 5px;
+}
+
+.rankings p:nth-child(1){
+	width: 80px;
+}
+
+.rankings p:nth-child(2){
+	width: 120px;
+}
+
+.rankings p:nth-child(3){
+	width: 60px;
+}
+
+.rankings p:nth-child(4){
+	width: 70px;
+}
+
+.rankings p:nth-child(5){
+	width: 70px;
+}
+
+.rankings p:nth-child(6),
+.rankings p:nth-child(7),
+.rankings p:nth-child(8){
+	width: 80px;
+}
