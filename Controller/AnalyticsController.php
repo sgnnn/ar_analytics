@@ -245,9 +245,7 @@ class AnalyticsController extends AppController {
 		$this->seDay = isset($this->params['url']["seDay"]) ? $this->params['url']["seDay"] : "";
 		$this->rcNum = isset($this->params['url']["rcNum"]) ? $this->params['url']["rcNum"] : "";
 
-		$user = $this->Auth->user();
-		if(is_null($user))
-			$this->redirect(array('controller' => 'Homes', 'action'=>'index'));
+		parent::authCheck();
 
 		if(empty($this->seCd) or empty($this->seDay) or empty($this->rcNum))
 			$this->exec = false;

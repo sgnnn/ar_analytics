@@ -50,4 +50,9 @@ class AppController extends Controller {
 	}
 
 
+	public function authCheck(){
+		$user = $this->Auth->user();
+		if(is_null($user))
+			$this->redirect(array('controller' => 'Users', 'action'=>'login'));
+	}
 }

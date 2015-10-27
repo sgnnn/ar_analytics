@@ -25,6 +25,8 @@ class RankingsController extends AppController {
 		else
 			$period = "season";
 
+		parent::authCheck();
+
 		$this->set("display",$this->display);
 		$this->set("category", $category);
 		$this->set("racerRank", $racerRank);
